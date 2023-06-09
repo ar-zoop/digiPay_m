@@ -4,6 +4,8 @@ const { response } = require("express");
 
 const walletRepo = new WalletRepository();
 
+
+
 async function convertResponseData(responseData) {
 
     const convertedData = {
@@ -32,6 +34,15 @@ async function convertResponseData(responseData) {
 
 }
 
+async function getSumOfNotes(convertedData) {
+    let totalSum = 0;
+    console.log(convertedData);
+    for (const note of convertedData.data) {
+        totalSum += parseInt(note.value) * parseInt(note.numberOfNotes);
+    }
+    return totalSum;
+}
+
 async function getWallet(id) {
     try {
         const response = await walletRepo.getPhoneNumber(id);
@@ -51,6 +62,19 @@ async function getWalletInfo(id) {
         console.log(error);
         throw error;
     }
+}
+
+async function getWalletBalance(id) {
+    try {
+        const response = await walletRepo.getWalletInfo(Number(id));
+        const convertedData = await convertResponseData(response);
+        const totalBalance = await getSumOfNotes(convertedData);
+        return totalBalance;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+  
 }
 
 async function deleteNotes(phoneNumber, data) {
@@ -86,6 +110,7 @@ async function getPhoneNumber(id) {
 async function addMoneyToWallet(phoneNumber, data) {
     try {
         let response = undefined;
+        // console.log("data=>", data);
         for (const note of Object.values(data)) {
             for (let i = 0; i < note.numberOfNotes; i++) {
                 try {
@@ -105,4 +130,4 @@ async function addMoneyToWallet(phoneNumber, data) {
 
 }
 
-module.exports = { getWallet, deleteNotes, getPhoneNumber, addMoneyToWallet, getWalletInfo };
+module.exports = { getWallet, deleteNotes, getPhoneNumber, addMoneyToWallet, getWalletInfo, getWalletBalance };

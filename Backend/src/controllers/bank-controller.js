@@ -1,3 +1,4 @@
+const { response } = require('express');
 const { BankService } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 
@@ -27,15 +28,18 @@ async function getPhoneNumber(req, res) {
     }
 }
 
-async function updateBalance(req, res) {
+async function addMoneyToBank(req, res, next) {
     try {
-        const bank = await BankService.updateBank({
+        const bank = await BankService.addMoneyToBank({
             phoneNumber:req.body.phoneNumber,
             balance: req.body.balance
         });
     
         SuccessResponse.data = bank;
-        return res.status(201).json(SuccessResponse)
+        // return res.status(201).json(SuccessResponse)
+        if(response){
+            next();
+        }
     } catch (error) {
         ErrorResponse.error = error
         return res.status(500).json(ErrorResponse)
@@ -58,6 +62,6 @@ async function reduceMoneyFromBank(req,res) {
 module.exports = {
     createBank,
     getPhoneNumber,
-    updateBalance,
+    addMoneyToBank,
     reduceMoneyFromBank
 }

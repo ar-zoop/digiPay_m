@@ -17,6 +17,17 @@ async function addMoneyToWallet(req, res, next) {
 
 }
 
+async function getWalletBalance(req, res) {
+    try {
+        const wallet = await WalletService.getWallet(req.body.phoneNumber);
+        SuccessResponse.data = wallet;
+        return res.status(201).json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(500).json(ErrorResponse)
+    }
+}
+
 async function getWalletInfo(req, res) {
     try {
         const wallet = await WalletService.getWalletInfo(req.body.phoneNumber);
@@ -68,5 +79,5 @@ async function deleteNotes(req, res) {
 
 
 module.exports = {
-    addMoneyToWallet, getWallet, checkPhoneNumber, deleteNotes, getWalletInfo
+    addMoneyToWallet, getWallet, checkPhoneNumber, deleteNotes, getWalletInfo, getWalletBalance
 }

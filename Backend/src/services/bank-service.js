@@ -18,7 +18,7 @@ async function createBank(data) {
     }
 }
 
-async function updateBank(data) {
+async function addMoneyToBank(data) {
     data.phoneNumber=Number(data.phoneNumber)
     data.balance=Number(data.balance)
 
@@ -71,7 +71,7 @@ async function reduceMoneyFromBank(id, data){
         let totalBalance = 0;
         for (const note of Object.values(data)) {
             for (let i = 0; i < note.numberOfNotes; i++) {
-                console.log("inside loop");
+                // console.log("inside loop");
                 totalBalance+=Number(note.value);
             }
         }
@@ -84,4 +84,4 @@ async function reduceMoneyFromBank(id, data){
     }
 }
 
-module.exports = { createBank, updateBank, getBank, getPhoneNumber, reduceMoneyFromBank };
+module.exports = { createBank, addMoneyToBank, getBank, getPhoneNumber, reduceMoneyFromBank };
