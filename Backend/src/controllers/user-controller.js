@@ -28,4 +28,45 @@ async function getUser(req, res) {
     }
 }
 
-module.exports = { createUser, getUser };
+async function setPincode(req, res) {
+    try {
+        const response = await UserService.setPincode(req.body.phoneNumber, req.body.pincode);
+        SuccessResponse.data = response;
+        return res.status(201).json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(500).json(ErrorResponse)
+    }
+}
+
+async function getPincode(req, res) {
+    try {
+        const response = await UserService.getPincode(req.body.phoneNumber);
+        SuccessResponse.data = response;
+        return res.status(201).json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(500).json(ErrorResponse)
+    }
+}
+
+async function checkPincode(req,res){
+    try{
+        const response= await UserService.getPincode(req.body.phoneNumber);
+        
+        if (response.pincode == req.body.pincode) {
+            SuccessResponse.data = response;
+            return res.status(201).json(SuccessResponse)
+
+        }
+        else{
+            ErrorResponse.error = error;
+            return res.status(500).json(ErrorResponse)
+        }
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(500).json(ErrorResponse)
+    }
+}
+
+module.exports = { createUser, getUser, setPincode, getPincode, checkPincode };

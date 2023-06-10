@@ -23,6 +23,26 @@ class UserRepository extends CrudRepository {
         );
         return response;
     }
+
+    async setPincode(phoneNumber, pincode) {  
+        const response = await users.update({
+            pincode: pincode
+        }, {
+            where: {
+                phoneNumber: phoneNumber
+            }
+        })
+        return response;
+    }
+
+    async getPincode(phoneNumber) {
+        const response = await users.findOne(
+            {
+                where: { phoneNumber: phoneNumber }
+            }
+        );
+        return response;
+    }
 }
 
 

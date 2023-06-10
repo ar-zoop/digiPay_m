@@ -22,7 +22,11 @@ module.exports = {
         primaryKey: true,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      pincode: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

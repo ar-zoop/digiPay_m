@@ -24,4 +24,24 @@ async function getUser(id) {
     }
 }
 
-module.exports = { createUser, getUser };
+async function setPincode(id, pincode) {
+    try {
+        const response = await userRepo.setPincode(id, pincode);
+        return response;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+async function getPincode(id) {
+    try {
+        const response = await userRepo.getPincode(id);
+        return response;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+module.exports = { createUser, getUser, getPincode, setPincode };
