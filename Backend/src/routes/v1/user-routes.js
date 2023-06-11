@@ -5,7 +5,7 @@ const { UserController } = require('../../controllers')
 const router = express.Router();
 
 
-router.get('/signin', UserController.signin);
+router.post('/signin', UserController.signin);
 router.post('/signup', UserController.signup);
 
 // router.post('/signup', AuthRequestMiddlewares.validateAuthRequest, UserController.signup);

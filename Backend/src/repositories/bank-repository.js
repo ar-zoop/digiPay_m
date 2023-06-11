@@ -16,7 +16,7 @@ class BankRepository extends CrudRepository {
         return response;
     }
 
-    async getBank(id, balance) {
+    async getBank(id) {
         const response = await bankAccount.findOne(
             {
                 where: { phoneNumber: id },
@@ -34,15 +34,18 @@ class BankRepository extends CrudRepository {
         return response;
     }
 
-    async updateBalance(id, data) {
+    async updateBalance(id, balance) {
+        console.log(id,balance)
         const response = await bankAccount.update({
-            balance: data.balance
+            balance: balance
         }, {
             where: {
                 phoneNumber: id
             }
         }
         );
+        console.log(response);
+        
         return response;
     }
 

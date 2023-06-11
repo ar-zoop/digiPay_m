@@ -1,4 +1,4 @@
-const { WalletRepository } = require("../repositories");
+const { WalletRepository} = require("../repositories");
 
 const { response } = require("express");
 
@@ -66,7 +66,14 @@ async function getWalletInfo(id) {
 
 async function getWalletBalance(id) {
     try {
-        const response = await walletRepo.getWalletInfo(Number(id));
+        let response = await walletRepo.getWalletInfo(Number(id));
+        console.log("response in getwalletbalance" , response);
+        if(response.length == 0 ){
+            response=undefined;
+            // return res.status(201).json(response);
+            return response;
+        }
+        
         const convertedData = await convertResponseData(response);
         const totalBalance = await getSumOfNotes(convertedData);
         return totalBalance;
@@ -109,8 +116,9 @@ async function getPhoneNumber(id) {
 
 async function addMoneyToWallet(phoneNumber, data) {
     try {
-        let response = undefined;
-        // console.log("data=>", data);
+        console.log(phoneNumber, data)
+        let response ;
+        console.log("data=>", data);
         for (const note of Object.values(data)) {
             for (let i = 0; i < note.numberOfNotes; i++) {
                 try {
@@ -122,6 +130,7 @@ async function addMoneyToWallet(phoneNumber, data) {
                 }
             }
         }
+        console.log("response ", response)
         return response;
     } catch (error) {
         console.log(error);

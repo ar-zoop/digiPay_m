@@ -1,5 +1,5 @@
 const CrudRepository = require("./crud-repository");
-const { WalletCurrency, bankAccount } = require("../models");
+const { WalletCurrency, bankAccount, users } = require("../models");
 const { response } = require("express");
 
 class WalletRepository extends CrudRepository {
@@ -8,6 +8,7 @@ class WalletRepository extends CrudRepository {
     }
 
     async addMoneyToWallet(id, value) {
+        console.log("addmonrytowallet ", id, value)
         const data = { phoneNumber: id, value: value };
         const response = await WalletCurrency.create(
             data
@@ -17,11 +18,12 @@ class WalletRepository extends CrudRepository {
 
 
     async getPhoneNumber(id) {
-        const response = await bankAccount.findOne(
+        const response = await users.findOne(
             {
                 where: { phoneNumber: id }
             }
         );
+        console.log(response);
         return response;
     }
 
@@ -40,13 +42,19 @@ class WalletRepository extends CrudRepository {
 
     async getWalletInfo(id) {
         console.log(typeof(id));
-            const response = await WalletCurrency.findAll(
-            {
-                where: { phoneNumber: id }
-            }
+        const response = await WalletCurrency.findAll(
+        {
+            where: { phoneNumber: id }
+        }
         );
+        console.log(response);
+        if(!response){
+
+        }
         return response;
     }
+
+    
 }
 
 module.exports = WalletRepository;

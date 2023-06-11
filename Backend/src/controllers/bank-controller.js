@@ -19,7 +19,7 @@ async function createBank(req, res) {
 
 async function getPhoneNumber(req, res) {
     try {
-        const bank = await BankService.getPhoneNumber(req.query.phoneNumber);
+        const bank = await BankService.getPhoneNumber(req.body.phoneNumber);
         SuccessResponse.data = bank;
         return res.status(201).json(SuccessResponse)
     } catch (error) {
@@ -31,14 +31,15 @@ async function getPhoneNumber(req, res) {
 async function addMoneyToBank(req, res, next) {
     try {
         const bank = await BankService.addMoneyToBank({
-            phoneNumber:req.body.phoneNumber,
-            balance: req.body.balance
+            phoneNumber: req.body.phoneNumber,
+            data: req.body.data
         });
-    
+
         SuccessResponse.data = bank;
         // return res.status(201).json(SuccessResponse)
-        if(response){
-            next();
+        console.log(bank)
+        if (bank) {
+            return res.status(201).json(SuccessResponse)
         }
     } catch (error) {
         ErrorResponse.error = error
@@ -46,13 +47,15 @@ async function addMoneyToBank(req, res, next) {
     }
 }
 
-async function reduceMoneyFromBank(req,res) {
+async function reduceMoneyFromBank(req, res, next) {
+    console.log("in reducemoneyfrombank in bank controller",req.body.phoneNumber, req.body.data)
     try {
         const bank = await BankService.reduceMoneyFromBank(
             req.body.phoneNumber, req.body.data
         );
         SuccessResponse.data = bank;
-        return res.status(201).json(SuccessResponse)
+        next();
+        // return res.status(201).json(SuccessResponse)
     } catch (error) {
         ErrorResponse.error = error;
         return res.status(500).json(ErrorResponse)
