@@ -8,7 +8,7 @@ const userRoutes= require('./user-routes');
 
 const router = express.Router()
 
-router.get('/info', InfoController.info)
+router.get('/info', InfoController.info);
 
 router.use('/banks', bankRoutes);
 router.use('/wallets', walletRoutes);

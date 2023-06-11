@@ -1,19 +1,47 @@
 const {  UserService } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 const { StatusCodes } = require('http-status-codes')
+const {Auth}= require('../utils/common');
+const { compareSync } = require('bcrypt');
 
-async function createUser(req, res) {
+
+async function signup(req, res) {
     try {
-        const response = await UserService.createUser({
-            name : req.body.name,
+        const user = await UserService.createUser({
+            name: req.body.name,
             phoneNumber: req.body.phoneNumber,
             password: req.body.password
-        })
-        console.log(response)
-        return res.status(201).json(response)
+        });
+        SuccessResponse.data = user;
+        return res
+            .status(StatusCodes.CREATED)
+            .json(SuccessResponse);
     } catch (error) {
         console.log(error);
-        return res.status(500).json(error)
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json(ErrorResponse);
+    }
+}
+
+
+async function signin(req, res) {
+    try {
+        const user = await UserService.signin({
+            phoneNumber: req.body.phoneNumber,
+            password: req.body.password
+        });
+        SuccessResponse.data = user;
+        return res
+            .status(StatusCodes.CREATED)
+            .json(SuccessResponse);
+    } catch (error) {
+        console.log(error);
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json(ErrorResponse);
     }
 }
 
@@ -69,4 +97,5 @@ async function checkPincode(req,res){
     }
 }
 
-module.exports = { createUser, getUser, setPincode, getPincode, checkPincode };
+
+module.exports = { getUser, setPincode, getPincode, checkPincode, signin, signup };
