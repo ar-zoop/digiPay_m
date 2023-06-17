@@ -139,4 +139,15 @@ async function addMoneyToWallet(phoneNumber, data) {
 
 }
 
-module.exports = { getWallet, deleteNotes, getPhoneNumber, addMoneyToWallet, getWalletInfo, getWalletBalance };
+
+async function getAllNotesWithUsers() {
+    try {
+        const response = await walletRepo.getAllNotesWithUsers();
+        return response;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+module.exports = { getWallet, deleteNotes, getPhoneNumber, addMoneyToWallet, getWalletInfo, getWalletBalance, getAllNotesWithUsers };

@@ -78,14 +78,14 @@ async function getPincode(req, res) {
     }
 }
 
-async function checkPincode(req,res){
+async function checkPincode(req,res, next){
     try{
         const response= await UserService.getPincode(req.body.phoneNumber);
-        
+        // console.log("in user-ctrler chekc pincode =>", response);
+        // console.log("user-controller", response.pincode, req.body.pincode)
         if (response.pincode == req.body.pincode) {
-            SuccessResponse.data = response;
-            return res.status(201).json(SuccessResponse)
-
+            // console.log("checked")
+           next();
         }
         else{
             ErrorResponse.error = error;

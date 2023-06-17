@@ -53,6 +53,16 @@ class WalletRepository extends CrudRepository {
         }
         return response;
     }
+    
+    async getAllNotesWithUsers(id) {
+        console.log(typeof (id));
+        const response = await WalletCurrency.findAll( );
+        console.log(response);
+        if (!response) {
+
+        }
+        return response;
+    }
 
     
 }

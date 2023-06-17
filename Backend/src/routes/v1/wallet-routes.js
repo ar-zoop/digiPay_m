@@ -8,8 +8,8 @@ router.post('/', BankController.reduceMoneyFromBank, WalletController.addMoneyTo
 router.patch('/', WalletController.deleteNotes);
 router.get('/', WalletController.getWalletInfo);
 router.get('/walletBalance', WalletController.getWalletBalance);
-
-
+router.get('/RBIinfo', WalletController.getAllNotesWithUsers);
 
 module.exports = router;
+
 

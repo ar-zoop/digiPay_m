@@ -6,11 +6,11 @@ const { success } = require('../utils/common/error-response');
 
 async function addMoneyToWallet(req, res) {
     try {
-        console.log("addmoneytowallet in wallet controller ", req.body.phoneNumber, req.body.data)
+        // console.log("addmoneytowallet in wallet controller ", req.body.phoneNumber, req.body.data)
         const response = await WalletService.addMoneyToWallet(
             req.body.phoneNumber, req.body.data
         )
-        console.log("response in addmoneytowallet",response)
+        // console.log("response in addmoneytowallet",response)
         if (response) {
             return res.status(201).json(SuccessResponse)
         }
@@ -18,6 +18,22 @@ async function addMoneyToWallet(req, res) {
         return res.status(500).json(ErrorResponse)
 
 }
+}
+
+async function addMoneyToWalletInw2wTransfer(req, res,next) {
+    try {
+        // console.log("addmoneytowallet in wallet controller ", req.body.recieverPhoneNumber, req.body.data)
+        const response = await WalletService.addMoneyToWallet(
+            req.body.receiverPhoneNumber, req.body.data
+        )
+        // console.log("response in addmoneytowallet", response)
+        if (response) {
+            next();
+        }
+    } catch (error) {
+        return res.status(500).json(ErrorResponse)
+
+    }
 }
 
 async function getWalletBalance(req, res) {
@@ -76,6 +92,7 @@ async function deleteNotes(req, res, next) {
     try {
         let w = await WalletService.deleteNotes(req.body.phoneNumber, req.body.data);
         SuccessResponse.data = w;
+        // console.log("api ho gayi yar");
         next()
         // return res.status(201).json(SuccessResponse)
     } catch (error) {
@@ -94,8 +111,18 @@ async function reduceMoneyFromWallet(req, res) {
     }
 }
 
-
+async function getAllNotesWithUsers(req, res) {
+    try {
+        let w = await WalletService.getAllNotesWithUsers();
+        SuccessResponse.data = w;
+        return res.status(201).json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(500).json(ErrorResponse)
+    }
+}
 
 module.exports = {
-    addMoneyToWallet, getWallet, checkPhoneNumber, deleteNotes, getWalletInfo, getWalletBalance, reduceMoneyFromWallet
+    addMoneyToWallet, getWallet, checkPhoneNumber, deleteNotes, getWalletInfo, getWalletBalance, reduceMoneyFromWallet,
+    addMoneyToWalletInw2wTransfer, getAllNotesWithUsers
 }

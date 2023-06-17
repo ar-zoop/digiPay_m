@@ -96,7 +96,9 @@ async function setPincode(id, pincode) {
 
 async function getPincode(id) {
     try {
+        // console.log("id in user-service", id)
         const response = await userRepo.getPincode(id);
+        // console.log("response in user-service =>", response)
         return response;
     } catch (error) {
         console.log(error);

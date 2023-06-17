@@ -2,7 +2,6 @@ const { BankController } = require('../controllers')
 const { WalletService, BankService } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 
-
 async function checkPhoneNumber(req, res, next) {
    
    try {
@@ -17,6 +16,5 @@ async function checkPhoneNumber(req, res, next) {
    }   
 }
 module.exports = {
-    checkPhoneNumber,
-    
+    checkPhoneNumber,    
 }
