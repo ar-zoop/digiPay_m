@@ -1,6 +1,7 @@
 const CrudRepository = require("./crud-repository");
 const { voucherDetails } = require("../models");
 const { response } = require("express");
+const { DATEONLY } = require("sequelize");
 
 class VoucherRepository extends CrudRepository {
     constructor() {
@@ -13,6 +14,23 @@ class VoucherRepository extends CrudRepository {
         const response = await voucherDetails.create(
             data
         );
+        return response;
+    }
+
+    async updateVoucher(data){
+        console.log("in voucher-repo", data);
+        data.phoneNumber=Number(data.phoneNumber);
+        data.voucherId=Number(data.voucherId);
+        console.log("here");
+        const response = await voucherDetails.update({
+           expiryDate: data.expiryDate
+        }, {
+            where: {
+                voucherId: data.voucherId
+            }
+        }
+        );
+
         return response;
     }
 }
