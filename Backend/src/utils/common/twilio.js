@@ -1,6 +1,6 @@
 const client = require('twilio')('ACecfaab035e0eeb372fa7515852dbae0f', 'c83395fc38d8ac1289effa1a5e637163');
 function sendTextMessage(body){
-    console.log("twilio ke ander ",body.message, '+91' + body.to)
+    console.log(body.message, body.to)
     client.messages.create({
         body: body.message,
         to: '+91'+body.to,

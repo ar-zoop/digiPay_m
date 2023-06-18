@@ -37,4 +37,15 @@ async function updateVoucher(data) {
     }
 }
 
-module.exports = { createVoucher, updateVoucher };
+async function getVoucher(data){
+    try {
+        console.log("in voucher-service", data);
+        const response = await voucherRepo.getVoucher(data);
+        return response;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+module.exports = { createVoucher, updateVoucher, getVoucher};

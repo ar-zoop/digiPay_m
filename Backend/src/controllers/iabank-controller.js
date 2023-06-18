@@ -10,7 +10,21 @@ async function createIssuerBank(req, res) {
             phoneNumber: req.body.phoneNumber,
             balance: req.body.balance
         })
-        //  console.log(response);
+        return res.status(201).json(response)
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(error)
+    }
+}
+
+async function createAcquirerBank(req, res) {
+
+    try {
+        const response = await IABankService.createIssuerBank({
+            type: "acquirerBank",
+            phoneNumber: req.body.phoneNumber,
+            balance: req.body.balance
+        })
         return res.status(201).json(response)
     } catch (error) {
         console.log(error);
@@ -18,5 +32,6 @@ async function createIssuerBank(req, res) {
     }
 }
 module.exports = {
-    createIssuerBank
+    createIssuerBank,
+    createAcquirerBank
 }

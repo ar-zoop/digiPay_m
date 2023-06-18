@@ -48,11 +48,8 @@ async function resendVoucher(req, res) {
 
 async function getVoucher(req, res) {
     try {
-        const user = await VoucherService.createVoucher({
-            phoneNumber: req.body.phoneNumber,
-            amount: req.body.amount,
-            expiryDate: req.body.expiryDate,
-            purpose: req.body.purpose,
+        const user = await VoucherService.getVoucher({
+            phoneNumber: req.body.phoneNumber
         });
         SuccessResponse.data = user;
         return res

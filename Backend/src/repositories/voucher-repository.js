@@ -33,6 +33,21 @@ class VoucherRepository extends CrudRepository {
 
         return response;
     }
+    async getVoucher(data) {
+        console.log("in viucher-repo getVoucher", data);
+        data.phoneNumber = Number(data.phoneNumber);
+        
+        const response = await voucherDetails.findAll(
+            {
+            where: {
+                phoneNumber: data.phoneNumber
+            }
+        });
+        return response;
+    }
+
+
+
 }
 
 module.exports = VoucherRepository;

@@ -18,7 +18,6 @@ async function returnTheResponse(req, res) {
 
 async function twilio(req,res, next) {
 	try {
-		// console.log(`transacttion - contoller =>> here  ${req.body.recieverPhoneNumber}, ${req.body.amount}`)
 		const body = {
 			to: String(req.body.phoneNumber),
 			from: '+13612667516',

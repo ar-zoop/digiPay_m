@@ -5,12 +5,15 @@ module.exports = {
     await queryInterface.createTable('merchants', {
       phoneNumber: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.BIGINT
       },
       purpose: {
         type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
