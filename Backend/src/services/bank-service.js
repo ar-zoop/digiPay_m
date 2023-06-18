@@ -25,7 +25,7 @@ async function addMoneyToBank(data) {
     try {
         const user = await bankRepo.getBank
         (data.phoneNumber);
-        console.log("user in bank-servive before", user)
+      
         if(!user){
             throw new AppError("User does not exist", StatusCodes.NOT_FOUND);
         }

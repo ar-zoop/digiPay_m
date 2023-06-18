@@ -31,5 +31,17 @@ async function reduceMoneyFromIssuerBank(data) {
     }
 }
 
+async function addMoneyToAcquirerBank(data) {
 
-module.exports = { createIssuerBank, reduceMoneyFromIssuerBank };
+    try {
+        const response = await iaBankRepo.addMoneyToAcquirerBank(data);
+
+        return response;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+
+module.exports = { createIssuerBank, reduceMoneyFromIssuerBank, addMoneyToAcquirerBank };

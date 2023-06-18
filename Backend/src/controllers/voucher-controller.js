@@ -27,7 +27,7 @@ async function createVoucher(req, res) {
 
 async function resendVoucher(req, res) {
     try {
-        console.log("in voucher-controller", req.body);
+        
         const user = await VoucherService.updateVoucher({
             phoneNumber: req.body.phoneNumber,            
             expiryDate: req.body.expiryDate,

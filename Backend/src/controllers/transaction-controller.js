@@ -39,9 +39,11 @@ async function addTransaction(req, res) {
 	try {
 		console.log("transaction-controller addTransaction", req.body);
 		const response = await TransactionService.addTransaction({
-			senderPhoneNumber: req.body.phoneNumber, 
-			receiverPhoneNumber: req.body.receiverPhoneNumber, 
-			amount: req.body.amount});
+			merchantPhoneNumber: req.body.phoneNumber, 
+			userPhoneNumber: req.body.userPhoneNumber, 
+			amount: req.body.amount,
+			voucherId: req.body.voucherId
+		});
 		SuccessResponse.data = response;
 		return res.status(201).json(SuccessResponse);
 	} catch (error) {

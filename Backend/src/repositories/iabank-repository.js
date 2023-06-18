@@ -37,5 +37,25 @@ class IABankRepository extends CrudRepository {
         return response;
     }
 
+    async addMoneyToAcquirerBank(data) {
+
+        let response = await banks.findOne(
+            {
+                where: { phoneNumber: data.phoneNumber },
+            }
+        );
+        console.log(response);
+        response = await banks.update({
+            balance: Number(response.balance) + Number(data.amount)
+        }, {
+            where: {
+                phoneNumber: data.phoneNumber
+            }
+        }
+        );
+
+        return response;
+    }
+
 }
 module.exports = IABankRepository;

@@ -8,16 +8,6 @@ const { use } = require("../routes");
 
 const transactionRepo = new TransactionRepository();
 
-async function returnTheResponse(body) {
-    try {
-        // console.log("transaction-service returnTheResponse", body);
-        return body;
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-}
-
 
 async function addTransaction (data){
     try {
@@ -27,9 +17,10 @@ async function addTransaction (data){
         var currentTimeString = currentTime.format('HH:mm:ss');
         // console.log(currentTimeString);
         const obj = { 
-            recieverPhoneNumber: data.receiverPhoneNumber,
-            senderPhoneNumber: data.senderPhoneNumber,
+            merchantPhoneNumber: data.merchantPhoneNumber,
+            userPhoneNumber: data.userPhoneNumber,
             amount: data.amount,
+            voucherId: data.voucherId,
             date: startDate,
             time: currentTimeString
         };
@@ -41,4 +32,4 @@ async function addTransaction (data){
     }
 }
 
-module.exports = { returnTheResponse, addTransaction };
+module.exports = { addTransaction };
