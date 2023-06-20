@@ -46,8 +46,6 @@ class CrudRepository {
 			}
 		});
 	
-		console.log(response);
-
 		return response;
 	}
 

@@ -1,6 +1,5 @@
-const { BankController } = require('../controllers')
 const { IABankService } = require('../services')
-const { SuccessResponse, ErrorResponse } = require('../utils/common');
+const { ErrorResponse } = require('../utils/common');
 
 async function reduceMoneyFromIssuerBank(req, res, next) {
     

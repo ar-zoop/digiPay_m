@@ -1,13 +1,8 @@
 const {Auth}= require ('../utils/common');
 const { UserRepository } = require("../repositories");
-const bcrypt = require('bcrypt');
-const { response } = require("express");
 const AppError = require("../utils/errors/app-error");
 const { StatusCodes } = require("http-status-codes");
-const jwt= require('jsonwebtoken');
 const userRepo = new UserRepository();
-const {ServerConfig}= require('../config');
-const serverConfig = require("../config/server-config");
 
 async function createUser(data) {
     try {
@@ -38,19 +33,15 @@ async function getUser(id) {
 
 async function signin(data) {
     try {
-        console.log("user service in signin")
-        console.log(data.phoneNumber)
         const user = await userRepo.getUser(data.phoneNumber);
         if (!user) {
             throw new AppError('No user found for the given phone number', StatusCodes.NOT_FOUND);
         }
         const passwordMatch = Auth.checkPassword(data.password, user.password);
-        console.log("password match", passwordMatch)
         if (!passwordMatch) {
             throw new AppError('Invalid password', StatusCodes.BAD_REQUEST);
         }
         const jwt = Auth.createToken({ id: user.phoneNumber });
-        console.log(jwt)
         return jwt;
     } catch (error) {
         if (error instanceof AppError) throw error;
@@ -96,9 +87,7 @@ async function setPincode(id, pincode) {
 
 async function getPincode(id) {
     try {
-        // console.log("id in user-service", id)
         const response = await userRepo.getPincode(id);
-        // console.log("response in user-service =>", response)
         return response;
     } catch (error) {
         console.log(error);

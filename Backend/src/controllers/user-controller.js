@@ -1,8 +1,6 @@
 const {  UserService } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 const { StatusCodes } = require('http-status-codes')
-const {Auth}= require('../utils/common');
-const { compareSync } = require('bcrypt');
 
 
 async function signup(req, res) {

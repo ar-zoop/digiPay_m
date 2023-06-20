@@ -1,6 +1,5 @@
 const CrudRepository = require("./crud-repository");
 const { merchants } = require("../models");
-const { response } = require("express");
 
 class MerchantRepository extends CrudRepository {
     constructor() {

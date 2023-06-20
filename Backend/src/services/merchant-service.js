@@ -1,13 +1,8 @@
 const { Auth } = require('../utils/common');
 const { MerchantRepository } = require("../repositories");
-const bcrypt = require('bcrypt');
-const { response } = require("express");
 const AppError = require("../utils/errors/app-error");
 const { StatusCodes } = require("http-status-codes");
-const jwt = require('jsonwebtoken');
 const merchantRepo = new MerchantRepository();
-const { ServerConfig } = require('../config');
-const serverConfig = require("../config/server-config");
 
 async function createUser(data) {
     try {
@@ -28,19 +23,15 @@ async function createUser(data) {
 
 async function signin(data) {
     try {
-        console.log("merchant service in signin")
-        console.log(data.phoneNumber)
         const user = await merchantRepo.getUser(data.phoneNumber);
         if (!user) {
             throw new AppError('No user found for the given phone number', StatusCodes.NOT_FOUND);
         }
         const passwordMatch = Auth.checkPassword(data.password, user.password);
-        console.log("password match", passwordMatch)
         if (!passwordMatch) {
             throw new AppError('Invalid password', StatusCodes.BAD_REQUEST);
         }
         const jwt = Auth.createToken({ id: user.phoneNumber });
-        console.log(jwt)
         return jwt;
     } catch (error) {
         if (error instanceof AppError) throw error;
@@ -73,6 +64,4 @@ async function isAuthenticated(token) {
     }
 }
 
-
-
-module.exports = { createUser, signin, isAuthenticated};
+module.exports = { createUser, signin, isAuthenticated}

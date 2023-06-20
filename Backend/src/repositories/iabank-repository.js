@@ -1,6 +1,5 @@
 const CrudRepository = require("./crud-repository");
 const { banks } = require("../models");
-const { response } = require("express");
 
 class IABankRepository extends CrudRepository {
     constructor() {
@@ -44,7 +43,6 @@ class IABankRepository extends CrudRepository {
                 where: { phoneNumber: data.phoneNumber },
             }
         );
-        console.log(response);
         response = await banks.update({
             balance: Number(response.balance) + Number(data.amount)
         }, {

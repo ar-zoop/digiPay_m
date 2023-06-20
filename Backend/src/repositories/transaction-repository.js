@@ -1,6 +1,5 @@
 const CrudRepository = require("./crud-repository");
 const { transactions } = require("../models");
-const { response } = require("express");
 
 class TransactionRepository extends CrudRepository {
     constructor() {

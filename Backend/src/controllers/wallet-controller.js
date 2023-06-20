@@ -1,7 +1,5 @@
 const { WalletService, } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
-const { StatusCodes } = require('http-status-codes');
-const { success } = require('../utils/common/error-response');
 
 
 async function addMoneyToWallet(req, res) {

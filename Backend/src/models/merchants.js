@@ -38,7 +38,6 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   merchants.beforeCreate(function encrypt(merchants) {
-    console.log("merchants object before encryption", merchants);
     const encryptedPassword = bcrypt.hashSync(merchants.password, Number(ServerConfig.SALT_ROUNDS));
     merchants.password = encryptedPassword;
   });

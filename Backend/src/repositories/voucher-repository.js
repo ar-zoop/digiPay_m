@@ -1,7 +1,5 @@
 const CrudRepository = require("./crud-repository");
 const { voucherDetails } = require("../models");
-const { response } = require("express");
-const { DATEONLY } = require("sequelize");
 
 class VoucherRepository extends CrudRepository {
     constructor() {
@@ -21,7 +19,6 @@ class VoucherRepository extends CrudRepository {
       
         data.phoneNumber=Number(data.phoneNumber);
         data.voucherId=Number(data.voucherId);
-        console.log("here");
         const response = await voucherDetails.update({
            expiryDate: data.expiryDate
         }, {

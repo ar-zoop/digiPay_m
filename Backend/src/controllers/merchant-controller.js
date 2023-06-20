@@ -1,8 +1,6 @@
 const { MerchantService, VoucherService } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 const { StatusCodes } = require('http-status-codes')
-const { Auth } = require('../utils/common');
-const { compareSync } = require('bcrypt');
 const { Twilio } = require('../utils/common')
 
 async function signup(req, res) {
@@ -71,7 +69,6 @@ async function acceptPayment(req, res, next) {
                 voucherId: req.body.voucherId
             });
             SuccessResponse.data = user;
-            console.log(req.body);
             next();
         }
         

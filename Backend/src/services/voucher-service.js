@@ -1,9 +1,4 @@
 const { VoucherRepository } = require("../repositories");
-const AppError = require('../utils/errors/app-error');
-const { StatusCodes } = require('http-status-codes');
-const { response } = require("express");
-const { Console } = require("winston/lib/winston/transports");
-const { use } = require("../routes");
 
 const voucherRepo = new VoucherRepository();
 
@@ -49,7 +44,6 @@ async function updateVoucherBalance(data) {
 
 async function getVoucher(data){
     try {
-        console.log("in voucher-service", data);
         const response = await voucherRepo.getVoucher(data);
         return response;
     } catch (error) {

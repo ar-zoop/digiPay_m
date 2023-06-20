@@ -1,7 +1,6 @@
 const { VoucherService } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 const { StatusCodes } = require('http-status-codes')
-const { Auth } = require('../utils/common');
 
 
 async function createVoucher(req, res) {
