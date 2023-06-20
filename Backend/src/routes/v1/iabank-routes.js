@@ -5,10 +5,4 @@ const router = express.Router();
 
 router.post('/', IABankController.createIssuerBank);
 
-
-
-
-
-
 module.exports = router;
-

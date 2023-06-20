@@ -1,4 +1,4 @@
-const { WalletService, BankService } = require('../services')
+const { WalletService, } = require('../services')
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
 const { StatusCodes } = require('http-status-codes');
 const { success } = require('../utils/common/error-response');
@@ -6,11 +6,9 @@ const { success } = require('../utils/common/error-response');
 
 async function addMoneyToWallet(req, res) {
     try {
-        // console.log("addmoneytowallet in wallet controller ", req.body.phoneNumber, req.body.data)
         const response = await WalletService.addMoneyToWallet(
             req.body.phoneNumber, req.body.data
         )
-        // console.log("response in addmoneytowallet",response)
         if (response) {
             return res.status(201).json(SuccessResponse)
         }
@@ -22,11 +20,9 @@ async function addMoneyToWallet(req, res) {
 
 async function addMoneyToWalletInw2wTransfer(req, res,next) {
     try {
-        // console.log("addmoneytowallet in wallet controller ", req.body.recieverPhoneNumber, req.body.data)
         const response = await WalletService.addMoneyToWallet(
             req.body.receiverPhoneNumber, req.body.data
         )
-        // console.log("response in addmoneytowallet", response)
         if (response) {
             next();
         }
@@ -73,28 +69,12 @@ async function getWallet(req, res) {
     }
 }
 
-async function checkPhoneNumber(req, res, next) {
-    try {
-        const wallet = await WalletService.getWallet(req.body.phoneNumber);
-        const bank = await BankService.getPhoneNumber(req.body.phoneNumber);
-        if (bank.phoneNumber == wallet.phoneNumber) {
-            SuccessResponse.data = bank;
-        }
-        return res.status(201).json(SuccessResponse)
-    } catch (error) {
-        ErrorResponse.error = error;
-        return res.status(500).json(ErrorResponse)
-    }
-    next()
-}
 
 async function deleteNotes(req, res, next) {
     try {
         let w = await WalletService.deleteNotes(req.body.phoneNumber, req.body.data);
         SuccessResponse.data = w;
-        // console.log("api ho gayi yar");
         next()
-        // return res.status(201).json(SuccessResponse)
     } catch (error) {
         ErrorResponse.error = error;
         return res.status(500).json(ErrorResponse)
@@ -123,6 +103,6 @@ async function getAllNotesWithUsers(req, res) {
 }
 
 module.exports = {
-    addMoneyToWallet, getWallet, checkPhoneNumber, deleteNotes, getWalletInfo, getWalletBalance, reduceMoneyFromWallet,
+    addMoneyToWallet, getWallet, deleteNotes, getWalletInfo, getWalletBalance, reduceMoneyFromWallet,
     addMoneyToWalletInw2wTransfer, getAllNotesWithUsers
 }

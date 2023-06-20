@@ -7,7 +7,6 @@ const {TransactionService}= require ('../services');
 async function returnTheResponse(req, res) {
 	try {
 		const response = await UserService.getPincode(req.body.phoneNumber);
-		console.log("transaction-controller returnTheResponse", req.body);
 		SuccessResponse.data = req.body;
 		return res.status(201).json(SuccessResponse);
 	} catch (error) {
@@ -24,10 +23,7 @@ async function twilio(req,res, next) {
 			message: `Your OTP for payment of Rs. ${req.body.amount} "to"  ${req.body.receiverPhoneNumber} "is 706001.`
 		};
 		const response = Twilio.sendTextMessage(body);
-		// console.log("transaction-controller returnTheResponse", response);
-		next()
-		// SuccessResponse.data = response;
-		// return res.status(201).json(SuccessResponse);
+		next();
 	} catch (error) {
 		ErrorResponse.error = error;
 		return res.status(500).json(ErrorResponse);
@@ -37,7 +33,6 @@ async function twilio(req,res, next) {
 
 async function addTransaction(req, res) {
 	try {
-		console.log("transaction-controller addTransaction", req.body);
 		const response = await TransactionService.addTransaction({
 			merchantPhoneNumber: req.body.phoneNumber, 
 			userPhoneNumber: req.body.userPhoneNumber, 

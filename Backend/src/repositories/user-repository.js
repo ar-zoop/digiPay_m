@@ -36,13 +36,13 @@ class UserRepository extends CrudRepository {
     }
 
     async getPincode(phoneNumber) {
-        // console.log("phone number in user-repo", phoneNumber)
+       
         const response = await users.findOne(
             {
                 where: { phoneNumber: phoneNumber }
             }
         );
-        // console.log("response in user-repo", response)
+      
         return response;
     }
 }

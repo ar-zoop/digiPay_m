@@ -1,5 +1,5 @@
 const CrudRepository = require("./crud-repository");
-const { WalletCurrency, bankAccount, users } = require("../models");
+const { WalletCurrency,  users } = require("../models");
 const { response } = require("express");
 
 class WalletRepository extends CrudRepository {
@@ -27,18 +27,7 @@ class WalletRepository extends CrudRepository {
         return response;
     }
 
-    async deleteNotes(id, value) {
-        const row = await WalletCurrency.findOne({
-            where: {
-                phoneNumber: id,
-                value: value
-            }
-        });
-
-        if (row) {
-            await row.destroy(); 
-        }
-    }
+ 
 
     async getWalletInfo(id) {
         console.log(typeof(id));
@@ -54,15 +43,6 @@ class WalletRepository extends CrudRepository {
         return response;
     }
     
-    async getAllNotesWithUsers(id) {
-        console.log(typeof (id));
-        const response = await WalletCurrency.findAll( );
-        console.log(response);
-        if (!response) {
-
-        }
-        return response;
-    }
 
     
 }

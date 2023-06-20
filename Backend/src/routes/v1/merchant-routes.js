@@ -1,6 +1,5 @@
 const express = require("express");
 const { MerchantController, IABankController, TransactionController } = require('../../controllers')
-const { MerchantMiddleware } = require('../../middlewares');
 
 
 const router = express.Router();
@@ -12,4 +11,3 @@ router.get('/requestOTP', MerchantController.twilio);
 router.post('/acceptPayment', MerchantController.acceptPayment, IABankController.addMoneyToAcquirerBank, TransactionController.addTransaction);
 
 module.exports = router;
-

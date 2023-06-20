@@ -71,14 +71,16 @@ async function acceptPayment(req, res, next) {
                 voucherId: req.body.voucherId
             });
             SuccessResponse.data = user;
+            console.log(req.body);
             next();
-            }
-            else{
-            ErrorResponse.error = "OTP incorrect";
-                return res 
-                    .status(501)
-                    .json(ErrorResponse)
-            }
+        }
+        
+        else{
+        ErrorResponse.error = "OTP incorrect";
+            return res 
+                .status(501)
+                .json(ErrorResponse)
+        }
         
     } catch (error) {
         console.log(error);
