@@ -124,6 +124,20 @@ const OtpInput = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
+
+      <h4>Set Pin</h4>
+        <input
+          className="inputOTP"
+          style={{ width: "60%", height: "30px" }}
+          type="phonenumber"
+          name="Security Pin"
+          // onChange={(e) => setName(e.target.value)}
+          // id="name"
+          placeholder="Set your Security Pin"
+          required
+        />
+
+        <br />
         <h4>Enter Aadhar card Number</h4>
         <input
           className="inputOTP"

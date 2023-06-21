@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./dashboard.scss";
+import { useNavigate } from 'react-router-dom';
 import { MdOutlineSensorOccupied } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaEnvelopeOpenText, FaBlenderPhone } from "react-icons/fa";
@@ -9,7 +10,20 @@ import RightProfile from '../../components/RightProfile/RightProfile';
 import LowerProfile from '../../components/LowerProfile';
 
 const Dashboard = () => {
+    const navigate = useNavigate();
 
+
+    const handleAnalysisButtonClick = () => {
+        navigate('/Analysis'); // Navigate to '/Merchant' on button click
+    };
+    const handlePayButtonClick = () => {
+        navigate('/voucherpage'); // Navigate to '/voucherpage' on button click
+    };
+    
+    const handleRewardButtonClick = () => {
+        navigate('/rewards'); // Navigate to '/reward' on button click
+      };
+    
     return (
         <div className="dashboardContainer">
 
@@ -31,16 +45,16 @@ const Dashboard = () => {
                 <div className="transferMoney">
                     <h3 style={{ textAlign: "left", color: "#3f4040" }}>Transfer Money</h3>
                     <div className="start2">
-                        <button className="box1">
+                        <button className="box1" onClick={handleAnalysisButtonClick}>
                             <h4 className="transferHeading">Analysis</h4>
-                            <MdOutlineSensorOccupied style={{ marginTop: "6px" }} />
+                            <MdOutlineSensorOccupied style={{ marginTop: '6px' }} />
                         </button>
                         <button className="box1">
-                            <h4 className="transferHeading">Pay</h4>
+                            <h4 className="transferHeading" onClick={handlePayButtonClick}>Pay</h4>
                             <FaEnvelopeOpenText style={{ marginTop: "6px" }} />
                         </button>
                         <button className="box1">
-                            <h4 className="transferHeading">Reward Points</h4>
+                            <h4 className="transferHeading" onClick={handleRewardButtonClick}>Reward Points</h4>
                             <FaBlenderPhone style={{ marginTop: "6px" }} />
                         </button>
                     </div>
@@ -52,7 +66,7 @@ const Dashboard = () => {
                         <h3 style={{ color: "#8d8d8d" }}>show All <IoMdArrowDropdown /></h3>
                     </div>
                     <LowerProfile />
-                   
+
                 </div>
             </div>
             <RightProfile />

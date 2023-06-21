@@ -11,8 +11,17 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Transaction from './pages/Transaction/Transaction';
 import VoucherPage from './pages/VoucherPage/VoucherPage';
 import VoucherID from './pages/VoucherID/VoucherID';
-import Profile from './pages/Profile/Profile';
+import Profile from '././pages/Profile/Profile';
 import GenerateQR from './components/GenerateQR';
+import Reward from './pages/Rewards/Reward';
+import merchant from './pages/Merchant/Merchant';
+import Merchant from './pages/Merchant/Merchant';
+import Analysis from './pages/Analysis/Analysis'
+import Roles from './pages/Roles/Roles';
+import Merchant_Dashboard from './pages/Merchant_Dashboard/Merchant_Dashboard';
+import Company_Dashboard from './pages/CompanyDashboard/CompanyDashboard';
+import GovernmentDashboard from './pages/GovermentDashboard/GovernmentDashboard';
+
 // import OTPModal from './models/otpModel/OTPModal';
 
 function App() {
@@ -32,6 +41,15 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/transaction" element={<Transaction />} />
                 <Route path="/generateQR" element={<GenerateQR />} />
+                <Route path="/rewards" element={<Reward />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/merchant" element={<Merchant />} />
+                <Route path="/analysis" element={<Analysis />} />
+                <Route path="/roles" element={<Roles />} />
+                <Route path="/merchant-dashboard" element={<Merchant_Dashboard />} />
+                <Route path="/company-Dashboard" element={<Company_Dashboard />} />
+                <Route path="/government-Dashboard" element={<GovernmentDashboard />} />
+
                 
 
 

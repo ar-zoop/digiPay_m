@@ -1,6 +1,6 @@
 import React from 'react'
 import "./home.scss";
-import BannerImg from "../../assets/card image.png";
+import BannerImg from "../../assets/s2.png";
 import { HiArrowSmRight } from "react-icons/hi";
 import {
     FaFacebook,

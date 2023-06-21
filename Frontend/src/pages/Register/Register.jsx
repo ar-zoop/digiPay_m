@@ -95,7 +95,7 @@ const Register = () => {
                     />
                     <input
                         className="inputBox"
-                        type="text"
+                        type="password"
                         name="password"
                         // onChange={(e) => setName(e.target.value)}
                         // id="name"
@@ -116,7 +116,7 @@ const Register = () => {
                     </div>
 
                     <Link to="/otpverification">
-                        <button className="registerButton">Register</button>
+                        <button className="registerButton" style={{marginLeft:'60px'}}>Register</button>
                     </Link>
                     <Link to="/login">
                         <h3>Already have an account? Login</h3>

@@ -79,3 +79,38 @@
 
 
 }
+
+.logo {
+    cursor: pointer;
+    margin-left: 30px;
+    flex: 0 0 auto;
+    // margin-right: 890px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    
+    img {
+        width: 120px;
+        height: 60px;
+        // margin-top: 0;
+    }
+    
+}
+
+.otpInput{
+    margin-bottom: 15px;
+    height: 200%;
+    width: 20%;
+    padding: 20px;
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+    font-family: "Encode Sans Expanded", sans-serif;
+    padding-left: 20px;
+    border: 2px solid #33B786 ;
+
+    &:focus {
+        border: 2px solid #33B786 ;
+        outline: none;
+    }
+}
