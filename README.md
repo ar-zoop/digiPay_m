@@ -15,7 +15,8 @@ Keeping the essence of e-rupi voucher alive we built an online digital wallet to
 
 - [Folder Setup](#folder)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Features](#features)
+- [Node.js API's](#node.js)
 - [License](#license)
 
 ## Folder Setup
@@ -154,3 +155,65 @@ npm run dev
 - Distribute Voucher
 - Analysis : Distribution analysis, Vouchers being expired without being redeemd analysis
 - Employee Transaction History
+
+## Node.js API's
+
+1. POST User: signup `localhost:3000/api/v1/users/signup`
+
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/e32deb82-faac-4522-b015-8195c8d1d558)
+
+
+2. POST User: signIn `localhost:3000/api/v1/users/signin`
+   ![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/807bdc95-de9f-4be3-995f-017f35b1cfb2)
+
+3. PATCH User: Set pincode `localhost:3000/api/v1/users/pincode`
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/ce4744eb-5922-4bb0-95c5-4bdb81285c66)
+
+4. GET User: Check pincode `localhost:3000/api/v1/users/pincode`
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/bf1b72c4-a634-4421-a668-91c9a64b451d)
+
+5. GET User: Get User details `localhost:3000/api/v1/users`
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/34aee674-ddf1-46a3-8f29-8e8520c722b5)
+
+
+6. PATCH User: Resend voucher `localhost:3000/api/v1/vouchers`
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/ccddbe29-6cf1-4c09-bc62-34e7f0f26313)
+
+
+7. POST User: Request a voucher `User: localhost:3000/api/v1/vouchers`
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/229bfb00-b34b-43cd-8904-c3833cd9f1b8)
+
+8. GET User: Get voucher `localhost:3000/api/v1/vouchers`
+
+
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/5816d258-972d-433f-a057-35e8adfcf37a)
+
+9. GET User: Get voucher Cop `localhost:3000/api/v1/vouchers`
+
+
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/811c04bc-f4ca-41a2-a61c-8d9004c86074)
+
+10. POST Merchant: Signup `localhost:3000/api/v1/merchants`
+
+
+11. POST Merchant: SignIn `localhost:3000/api/v1/merchants/signin`
+
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/7afe9044-abc3-44a7-a5ab-014878329695)
+
+12. POST Merchant: create acquirer bank `localhost:3000/api/v1/merchants/addBank`
+
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/ad50e4d5-3a74-4c8d-8928-ac51b1866d37)
+
+
+13. GET Merchant: Request OTP `localhost:3000/api/v1/merchants/requestOTP`
+
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/35b24443-0215-4f0f-a107-227c0327c70c)
+
+
+14. POST Merchant: Accept Payment `localhost:3000/api/v1/merchants/acceptPayment`
+
+![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/8544e1a5-c06c-450b-aad5-1182070827f5)
+
+
+  
+   
