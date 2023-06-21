@@ -10,30 +10,30 @@ import OtpInput from '../../components/OtpInput';
 import { useNavigate } from 'react-router-dom';
 
 const VoucherID = () => {
-  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [showOtpModal, setShowOtpModal] = useState(false); // State to control the visibility of the OTP modal
   const [otpValues, setOtpValues] = useState({
     otp1: '',
     otp2: '',
     otp3: '',
     otp4: '',
-  });
+  }); // State to store the OTP values
 
-  const navigate = useNavigate(); // Hook for programmatic navigation
+  const navigate = useNavigate(); // React Router hook for navigation
 
   const handleChange = (value, event) => {
-    setOtpValues({ ...otpValues, [value]: event.target.value });
+    setOtpValues({ ...otpValues, [value]: event.target.value }); // Event handler for OTP input change
   };
 
   const openOtpModal = () => {
-    setShowOtpModal(true);
+    setShowOtpModal(true); // Function to open the OTP modal
   };
 
   const closeOtpModal = () => {
-    setShowOtpModal(false);
+    setShowOtpModal(false); // Function to close the OTP modal
   };
 
   const showModal = () => {
-    setShowOtpModal(true);
+    setShowOtpModal(true); // Function to show the OTP modal
   };
 
   const handleOk = () => {
@@ -42,12 +42,12 @@ const VoucherID = () => {
   };
 
   const handleCancel = () => {
-    setShowOtpModal(false);
+    setShowOtpModal(false); // Function to handle canceling the OTP modal
   };
 
   return (
     <div className="voucherIDContainer">
-      <LeftProfile />
+      <LeftProfile /> {/* Component for left profile */}
       <div className="voucherIDCenter">
         <div className="centerHeading">
           <h2 style={{ color: '#3f4040' }}>Profile</h2>
@@ -59,8 +59,9 @@ const VoucherID = () => {
 
         <div className="idInfo">
           <h2 style={{ textAlign: 'left', color: '#3f4040' }}>Voucher ID - b67Hi90g</h2>
-          <img src={IdImage} alt="" />
+          <img src={IdImage} alt="" /> {/* Image for voucher ID */}
           <div className="idValidation">
+            {/* Voucher details */}
             <div className="info1">
               <p style={{ color: '#573b87', fontSize: '10px', fontWeight: '600' }}>Amount</p>
               <h3 style={{ marginTop: '12px' }}>5000</h3>
@@ -84,7 +85,7 @@ const VoucherID = () => {
       </div>
       <Modal title="Enter Pin" visible={showOtpModal} onOk={handleOk} onCancel={handleCancel}>
         <div className="logo">
-          <img src={Logo} alt="" />
+          <img src={Logo} alt="" /> {/* Logo image */}
         </div>
         <h2>Verify Passcode</h2>
         <h4 style={{ color: 'grey' }}>
@@ -95,6 +96,7 @@ const VoucherID = () => {
         <p style={{ color: 'grey' }}>This is the same passcode that you set during registration to your Digi pay account</p>
         <br />
         <div className="otpContainer">
+          {/* OTP input fields */}
           <input
             name="otp1"
             className='otpInput'
@@ -129,7 +131,7 @@ const VoucherID = () => {
           />
         </div>
       </Modal>
-      <RightProfile />
+      <RightProfile /> {/* Component for right profile */}
     </div>
   );
 };

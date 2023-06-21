@@ -21,23 +21,25 @@ const Profile = () => {
 
                 <div className="profileInfo">
                     <div className="info1">
+                        {/* Displaying profile image */}
                         <img src={profileImg} alt="" />
-                        <h2 style={{marginTop: "15px"}}>Shweta Mehta</h2>
+                        <h2 style={{ marginTop: "15px" }}>Shweta Mehta</h2>
                         <h4 className="userHeading">Pro user</h4>
                     </div>
                     <div className="infoForm">
                         <div className="email">
-                            <p style={{color: "#3ebb8c", fontSize:"12px", marginBottom: "12px"}}>Email</p>
-                            <h3 style={{fontSize: "16px"}}>shwetamehta@gmail.com</h3>
+                            <p style={{ color: "#3ebb8c", fontSize: "12px", marginBottom: "12px" }}>Email</p>
+                            <h3 style={{ fontSize: "16px" }}>shwetamehta@gmail.com</h3>
                         </div>
                         <div className="phone">
-                            <p style={{color: "#3ebb8c", fontSize:"12px", marginBottom: "12px"}}>Phone Number</p>
-                            <h3 style={{fontSize: "16px"}}>+234 8030411314</h3>
+                            <p style={{ color: "#3ebb8c", fontSize: "12px", marginBottom: "12px" }}>Phone Number</p>
+                            <h3 style={{ fontSize: "16px" }}>+234 8030411314</h3>
                         </div>
                         <div className="gender">
-                            <p style={{color: "#3ebb8c", fontSize:"12px", marginBottom: "12px"}}>Gender</p>
-                            <h3 style={{fontSize: "16px"}}>Female</h3>
+                            <p style={{ color: "#3ebb8c", fontSize: "12px", marginBottom: "12px" }}>Gender</p>
+                            <h3 style={{ fontSize: "16px" }}>Female</h3>
                         </div>
+                        {/* Link to reset password */}
                         <Link><button>Reset Password</button></Link>
                     </div>
                 </div>

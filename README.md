@@ -71,22 +71,30 @@ The components are:
 - amountModal
 - otpModal
 - transactionModal
+- departmentModal
+- requestSentModel
+- detailsModal
 
 `Pages`-> Holds all the pages of the  application.
+- Analysis
+- CompanyDashboard
 - Dashboard
 - Home
 - Login
 - Merchant
+- Merchant_Dashboard
 - OtpVerification
 - Profile
+- Rewards
+- Roles
 - Register
 - Transaction
 - VoucherID
 - VoucherPage
-
+- Constants.js
 `styles`-> Contains CSS or styling files.
 
-`App.js`-> The main component that serves as the entry point for the frontend.
+`App.jsx`-> The main component that serves as the entry point for the frontend. 
 
 `index.js`-> The entry point for rendering the React application.
 
