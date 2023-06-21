@@ -81,6 +81,7 @@ async function acceptPayment(req, res, next) {
         
     } catch (error) {
         console.log(error);
+      
         ErrorResponse.error = error;
         return res
             .status(error.statusCode)

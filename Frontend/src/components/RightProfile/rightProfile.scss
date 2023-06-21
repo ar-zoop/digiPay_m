@@ -1,0 +1,86 @@
+.dashRight {
+    width: 33%;
+    height: 100%;
+    margin-right: 30px;
+
+    .rightUpper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .rightUpperOld {
+            display: flex;
+            align-items: center;
+            margin-left: 50px;
+        }
+
+        .rightUpperNew {
+            display: flex;
+            align-items: center;
+
+            .profilePic {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .rightLower {
+        // width: 100%;
+
+        .lastHeading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+
+        .transactions {
+            margin-top: 20px;
+            margin-left: 50px;
+
+            .details {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 10px;
+                margin-top: 20px;
+                border-bottom: 1px solid #8d8d8d;
+                padding-bottom: 15px;
+            }
+        }
+
+        .transactions {
+            margin-top: 20px;
+            margin-left: 50px;
+
+            .details {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 10px;
+                margin-top: 20px;
+                border-bottom: 1px solid #8d8d8d;
+                padding-bottom: 15px;
+            }
+        }
+
+        .transactionsLower  {
+            margin-top: 20px;
+            margin-left: 0px;
+
+            .details {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 10px;
+                width: 550px;
+                margin-top: 20px;
+                border-bottom: 1px solid #8d8d8d;
+                padding-bottom: 15px;
+            }
+        }
+    }
+}

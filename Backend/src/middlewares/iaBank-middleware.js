@@ -2,9 +2,7 @@ const { IABankService } = require('../services')
 const { ErrorResponse } = require('../utils/common');
 
 async function reduceMoneyFromIssuerBank(req, res, next) {
-    
     try {
-       
         const bank = await IABankService.reduceMoneyFromIssuerBank({
            balance: Number(req.body.amount), 
            phoneNumber: 0
@@ -18,5 +16,5 @@ async function reduceMoneyFromIssuerBank(req, res, next) {
     }
 }
 module.exports = {
-    reduceMoneyFromIssuerBank,
+    reduceMoneyFromIssuerBank
 }

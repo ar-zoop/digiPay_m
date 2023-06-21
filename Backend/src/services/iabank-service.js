@@ -15,7 +15,7 @@ async function createIssuerBank(data) {
 }
 
 async function reduceMoneyFromIssuerBank(data) {
-
+    console.log("service");
     try {
         const response = await iaBankRepo.reduceMoneyFromIssuerBank(data);
    

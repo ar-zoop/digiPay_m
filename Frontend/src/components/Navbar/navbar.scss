@@ -1,0 +1,79 @@
+@import "../../mixins.scss";
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    // z-index: 1;
+    // padding-top: 16px;
+    // padding-bottom: 16px;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+
+    // gap: 1px; 
+    &:first-child {
+        margin-right: auto;
+      }
+    @include md {
+        
+    }
+
+    .logo {
+        cursor: pointer;
+        margin-left: 30px;
+        flex: 0 0 auto;
+        // margin-right: 890px;
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        
+        img {
+            width: 180px;
+            height: 120px;
+            // margin-top: 0;
+        }
+        
+    }
+
+    .menuItems {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        // flex: 0 0 auto;
+        justify-content: space-between;
+        left: -90px;
+        gap: 50px;
+        margin-left: 80px;
+        // padding: 20px;
+        margin-top: 0;
+
+        @include md {
+            
+        }
+
+        .menuItem {
+            font-weight: 500;
+            font-size: 17px;
+            display: flex;
+            color: black;
+            cursor: pointer;
+        }
+    }
+
+    .btnLogin {
+        width: 130px;
+        height: 40px;
+        background-color: #d4f3e7;
+        color: #32b985;
+        border-radius: 7px;
+        border: 2px solid #32b985;
+        cursor: pointer;
+        margin-right: 35px;
+        font-family: 'Encode Sans Expanded',sans-serif;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}

@@ -28,7 +28,7 @@ async function signin(req, res) {
     try {
         const user = await UserService.signin({
             phoneNumber: req.body.phoneNumber,
-            password: req.body.password
+            password: req.body.password 
         });
         SuccessResponse.data = user;
         return res
@@ -76,16 +76,11 @@ async function getPincode(req, res) {
     }
 }
 
-async function checkPincode(req,res, next){
+async function checkPincode(req,res){
     try{
         const response= await UserService.getPincode(req.body.phoneNumber);
-        if (response.pincode == req.body.pincode) {
-           next();
-        }
-        else{
-            ErrorResponse.error = error;
-            return res.status(500).json(ErrorResponse)
-        }
+        SuccessResponse.data = response;
+        return res.status(201).json(SuccessResponse)
     } catch (error) {
         ErrorResponse.error = error;
         return res.status(500).json(ErrorResponse)

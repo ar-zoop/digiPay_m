@@ -17,7 +17,7 @@ class IABankRepository extends CrudRepository {
     }
 
     async reduceMoneyFromIssuerBank(data){
-       
+        console.log("repo");
         let response = await banks.findOne(
             {
                 where: { phoneNumber: data.phoneNumber },

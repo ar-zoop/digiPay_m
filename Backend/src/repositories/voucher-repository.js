@@ -44,7 +44,7 @@ class VoucherRepository extends CrudRepository {
             }
         );
         response = await voucherDetails.update({
-            amount: Number(response.amount)- data.amount
+            amount: Number(response.amount)- Number(data.amount)
         }, {
             where: {
                 voucherId: data.voucherId

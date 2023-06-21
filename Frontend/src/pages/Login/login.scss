@@ -1,0 +1,189 @@
+@import "../../mixins.scss";
+
+body {
+    background-color: #d4f3e7;
+  }
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+    .loginLeft {
+        display: flex;
+        flex-direction: column;
+        margin-left: 35px;
+        width: 50%;
+        max-width: 500px;
+        img {
+            width: 150px;
+            height: 110px;
+            // float: left;
+        }
+
+        h1 {
+            text-align: left;
+            margin-top: 20px;
+            line-height: 40px;
+            color: #252525;
+        }
+
+        p {
+            text-align: left;
+            margin-top: 20px;
+            line-height: 30px;
+            color: #252525;
+        }
+    }
+    
+    .loginRight {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 65vh;
+        width: 30%;
+        margin-right: 200px;
+        margin-top: 50px;
+        background: rgba(255, 255, 255, 255);
+        box-shadow: 0 8px 32px 0 rgba(51, 183, 134, 0.5);
+        backdrop-filter: blur(8.5px);
+        -webkit-backdrop-filter: blur(8.5px);
+        border-radius: 10px;
+        color: #ffffff;
+        letter-spacing: 0;
+
+        .loginHeading {
+            margin: 3rem 0 2rem 0;
+            color: rgb(51, 183, 134);
+        }
+
+        .inputBox {
+            margin-bottom: 15px;
+            height: 11%;
+            width: 72%;
+            border-radius: 30px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+            font-family: "Encode Sans Expanded", sans-serif;
+            padding-left: 20px;
+
+            &:focus {
+                border: 2px solid #33B786 ;
+                outline: none;
+            }
+        }
+
+        .loginButton {
+            margin-top: 30px;
+            text-transform: uppercase;
+            width: 250px;
+            font-size: 16px;
+            border-radius: 30px;
+            padding: 15px;
+            border-style: none;
+            background-color: rgb(51, 183, 134);
+            color: white;
+            letter-spacing: 3px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        h3 {
+            color: #252525;
+            font-size: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    }
+}
+
+.inputOTP{
+    margin-bottom: 15px;
+    height: 100%;
+    width: 170%;
+    padding: 20px;
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+    font-family: "Encode Sans Expanded", sans-serif;
+    padding-left: 20px;
+
+    &:focus {
+        border: 2px solid #33B786 ;
+        outline: none;
+    }
+
+}
+
+.selectModal{
+    margin-bottom: 15px;
+    height: 30px;
+    width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+    font-family: "Encode Sans Expanded", sans-serif;
+    padding-left: 20px;
+
+    &:focus {
+        border: 2px solid #33B786 ;
+        outline: none;
+    }
+
+}
+
+.MainContainer{
+    display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  width: 30vw;
+  margin-left: 500px;
+  background: rgba(255, 255, 255, 255);
+  box-shadow: 0 8px 32px 0 rgba(51, 183, 134, 0.5);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  color: #ffffff;
+  letter-spacing: 0;
+  @media only screen and (max-width: 320px) {
+    width: 80vw;
+    height: 90vh;
+    hr {
+      margin-bottom: 0.3rem;
+    }
+    h4 {
+      font-size: small;
+    }
+  }
+  @media only screen and (min-width: 360px) {
+    width: 80vw;
+    height: 90vh;
+    h4 {
+      font-size: small;
+    }
+  }
+  @media only screen and (min-width: 411px) {
+    width: 80vw;
+    height: 90vh;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 80vw;
+    height: 80vh;
+  }
+  @media only screen and (min-width: 1024px) {
+    width: 70vw;
+    height: 50vh;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 30vw;
+    height: 80vh;
+  }
+}

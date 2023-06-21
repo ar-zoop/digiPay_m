@@ -1,0 +1,201 @@
+@import "../../mixins.scss";
+
+body {
+    background-color: #d4f3e7;
+  }
+
+.banner {
+    padding: 40px 0;
+    width: 100%;
+    position: relative;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    height: calc(100vh - 80px);
+
+    .content {
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        // flex-direction: column-reverse;
+        // max-width: calc(100% - 20px);
+        margin: 0 auto;
+        position: relative;
+        flex-direction: row;
+        max-width: 1100px;
+
+        .bannerImg {
+            position: relative;
+            // width: 80%;
+            z-index: 9;
+            width: 450px;
+            height: 430px;
+            margin-bottom: 10px;
+            // margin-right: 60px;
+            margin-top: 30px;
+            margin-left: 120px;
+        }
+
+        .text-content {
+            // color: white;
+            width: 65%;
+            text-align: left;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            // align-items: center;
+            position: absolute;
+            word-wrap: break-word;
+            padding: 20px;
+            // line-height: 55px;
+            left: -58px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: #32b985;
+                // word-wrap: break-word;
+                // text-align: left;
+            }
+
+            h1 {
+                // width: 50%;
+                // text-align: left;
+                color: #252525;
+                font-size: 50px;
+                font-weight: 700;
+                line-height: 1.2;
+                margin-bottom: 20px;
+            }
+
+            p {
+                max-width: 500px;
+                font-size: 18px;
+                line-height: 24px;
+                margin-bottom: 40px;
+                color: #5d5f5e;
+                
+            }
+
+            .cta {
+                width: 135px;
+                height: 50px;
+                background-color: #32b985;
+                border-radius: 8px;
+                font-family: 'Encode Sans Expanded',sans-serif;
+                cursor: pointer;
+                color: white;
+                border-style: none;
+                font-size: 16px;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+        }        
+    }
+}
+
+.faq {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-top: 100px;
+    height: 600px;
+
+    .quesLeft {
+        text-align: left;
+        margin-left: 40px;
+        padding: 20px;
+
+        h1 {
+            font-size: 45px;
+            color: #252525;
+        }
+        h2 {
+            margin-top: 45px;
+            color: #32b985;
+            text-decoration: underline;
+            text-decoration-color: #32b985;
+            font-size: 25px;
+            line-height: 30px;
+            cursor: pointer;
+            // padding: 10px;
+        }
+        p {
+            margin-top: 45px;
+            color: #666a68;
+            line-height: 20px;
+        }
+    }
+
+    .quesRight {
+        text-align: left;
+        padding: 20px;
+        margin-right: 40px;
+
+        h3 {
+            color: #47257b;
+            font-size: 18px;
+            margin-top: 30px;
+            text-decoration: underline;
+            text-decoration-color: #47257b;
+            cursor: pointer;
+        }
+    }
+}
+
+.services {
+    background-color: white;
+    // margin-top: 100px;
+    width: 100%;
+    height: 180px;
+    color: #252525;
+    // position: relative;
+    // left: -9000px;
+
+    h1 {
+        padding: 62px;
+    }
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 200px;
+
+    .footerLeft {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 2;
+        padding: 35px;
+        margin-left: 55px;
+        
+        .new2 {
+            margin-left: 60px;
+        }
+
+        h2 {
+            color: #32b985;
+            
+        }
+        p {
+            color:#5d5f5e;
+            cursor: pointer;
+        }
+    }
+
+    .footerRight {
+        width: 65%;
+        img {
+            width: 600px;
+            height: 500px;
+            float: right;
+        }
+    }
+}
