@@ -15,9 +15,10 @@ Keeping the essence of e-rupi voucher alive we built an online digital wallet to
 
 - [Folder Setup](#folder)
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Features](#features)
+- [Running the project](#running)
 - [Node.js API's](#node.js)
-- [License](#license)
 
 ## Folder Setup
 
