@@ -24,7 +24,7 @@ const Login = () => {
     setIsSubmit(true);
 
     if (Object.keys(formErrors).length === 0) {
-      navigate("/Dashboard");
+      navigate("/Dashboard"); // Redirect to the Dashboard page if there are no form errors
     }
   };
 
@@ -39,24 +39,24 @@ const Login = () => {
     const errors = {};
 
     if (!values.phoneNumber) {
-      errors.phoneNumber = "Phone number is required!";
+      errors.phoneNumber = "Phone number is required!"; // Validate if phone number is provided
     }
     if (!values.password) {
-      errors.password = "Password is required";
+      errors.password = "Password is required"; // Validate if password is provided
     } else if (values.password.length < 4) {
-      errors.password = "Password must be more than 4 characters";
+      errors.password = "Password must be more than 4 characters"; // Validate minimum password length
     } else if (values.password.length > 10) {
-      errors.password = "Password cannot exceed more than 10 characters";
+      errors.password = "Password cannot exceed more than 10 characters"; // Validate maximum password length
     }
     return errors;
   };
 
   const setPhoneNumberCookie = (phoneNumber) => {
-    Cookies.set("phonenumber", phoneNumber, { expires: 7 });
+    Cookies.set("phonenumber", phoneNumber, { expires: 7 }); // Set a cookie for the phone number
   };
 
   const getPhoneNumberFromCookie = () => {
-    const phoneNumber = Cookies.get("phonenumber");
+    const phoneNumber = Cookies.get("phonenumber"); // Retrieve the phone number from the cookie
     return phoneNumber;
   };
 
@@ -104,3 +104,4 @@ const Login = () => {
 };
 
 export default Login;
+
