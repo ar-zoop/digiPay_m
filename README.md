@@ -26,21 +26,23 @@ Keeping the essence of e-rupi voucher alive we built an online digital wallet to
 
 Lets take a look inside the `src` folder
 
-`config` -> In this folder anything and everything regarding any configurations or setup of a library or module will be done. For example: setting up `dotenv` so that we can use the environment variables anywhere in a cleaner fashion, this is done in the 
+`config` -> Connected MySQL database and entered its password.
 
-`server-config.js`. One more example can be to setup you logging library that can help you to prepare meaningful logs, so configuration for this library should also be done here.
+`server-config.js`-> Environment variables: PORT, SALT_ROUNDS, JWT_EXPIRY, JWT_SECRET
 
-`routes` -> In the routes folder, we register a route and the corresponding middleware and controllers to it.
+`routes` -> V1 version of routing API in this folder. Routing of banks, merchants, transactions, users, and vouchers.
 
-`middlewares` -> they are just going to intercept the incoming requests where we can write our validators, authenticators etc.
+`middlewares` -> Validator and authenticator for banks is here.
 
-`controllers` -> they are kind of the last middlewares as post them you call you business layer to execute the budiness logic. In controllers we just receive the incoming requests and data and then pass it to the business layer, and once business layer returns an output, we structure the API response in controllers and send the output.
+`controllers` -> The connection setters between Routers and Services. Controllers are made for banks, merchants, transactions, users, and vouchers.
 
-`repositories` -> this folder contains all the logic using which we interact the DB by writing queries, all the raw queries or ORM queries will go here.
+`repositories` -> DB connections of banks, merchants, transactions, users, and vouchers are here.
 
-`services` -> contains the buiness logic and interacts with repositories for data from the database
+`services` -> All business logic for banks, merchants, transactions, users, and vouchers are here.
 
-`utils` -> contains helper methods, error classes etc.
+`utils` -> 
+- Helper methods: auth, error-response, success-response, Twilio here.
+- Error classes here.
 
 ### Frontend 
 
@@ -67,7 +69,7 @@ Lets take a look inside the `src` folder
 ### Setting up backend 
 Go inside the folder path and execute the following command:
 
-npm install
+`npm install`
 
 In the root directory create a .env file and add the following env variables
 
@@ -81,8 +83,6 @@ By executing the above command you will get migrations and seeders folder along 
 
 If you're setting up your development environment, then write the username of your db, password of your db and in dialect mention whatever db you are using for ex: mysql, mariadb etc
 
-If you're setting up test or prod environment, make sure you also replace the host with the hosted db url.
-
 ### Setting up frontend
 
 Navigate to the frontend directory: cd frontend
@@ -92,42 +92,31 @@ Run the following command to install frontend dependencies:
 
 npm install
 
-
-
-_Configuration_
+## Configuration
 
 If the project requires configuration, you may need to provide specific details or environment variables for both the backend and frontend.
 
-_Backend Configuration_
+### Backend 
 
-Inside the `backend` directory, create a `.env` file based on the provided .`env.example` file.
-Update the necessary environment variables in the `.env` file, such as the database connection URL, JWT secret, or any other configuration specific to your project.
-Frontend Configuration
-Inside the `frontend` directory, create a `.env` file based on the provided `.env.example` file.
-Update the necessary environment variables in the `.env` file, such as the backend API URL or any other configuration specific to your project.
+The .env file resides here. It has the port, salt_rounds, jwt_secret, and jwt_expiry.
 
-_Backend_
+## Running the project
+
+### Backend
 
 Open a terminal and navigate to the backend directory.
 
 Run the following command to start the backend server:
 
-To run the server execute : 
-
-npm run dev
-
+To run the server execute : `npm run dev`
 
 This command will start the backend server, which will listen for incoming API requests.
 
-_Frontend_
+### Frontend
 
 Open a new terminal window (while keeping the backend server running in the previous terminal) and navigate to the frontend directory.
 
-Run the following command to start the frontend development server:
-
-npm run dev
-
-
+Run the following command to start the frontend development server: `npm run dev`
 
 ## Features
 ### User
