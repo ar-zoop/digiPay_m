@@ -146,7 +146,7 @@ Run the following command to start the frontend development server: `npm run dev
 - Analysis : Distribution analysis, Vouchers being expired without being redeemd analysis
 - Employee Transaction History
 
-## Node.js API's
+## Node js API's
 
 1. POST User: signup `localhost:3000/api/v1/users/signup`
 
