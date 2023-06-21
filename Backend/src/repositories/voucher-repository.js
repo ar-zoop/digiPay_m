@@ -1,74 +1,41 @@
-const CrudRepository = require("./crud-repository");
-const { voucherDetails } = require("../models");
+const CrudRepository = require("./crud-repository"); // Importing the CrudRepository class
+const { users } = require("../models"); // Importing the users model
 
-class VoucherRepository extends CrudRepository {
+class UserRepository extends CrudRepository {
     constructor() {
-        super(voucherDetails);
+        super(users); // Calling the constructor of the parent CrudRepository class with the users model
     }
 
-    async createVoucher(data) {
-        data.phoneNumber = Number(data.phoneNumber);
-        data.amount = Number(data.amount);
-        const response = await voucherDetails.create(
-            data
-        );
-        return response;
+    async createUser(name, phoneNumber, password) {
+        const data = { name: name, phoneNumber: phoneNumber, password: password }; // Creating a data object with the provided parameters
+        const response = await users.create(data); // Creating a new user record with the provided data
+        return response; // Returning the response
     }
 
-    async updateVoucher(data){
-      
-        data.phoneNumber=Number(data.phoneNumber);
-        data.voucherId=Number(data.voucherId);
-        const response = await voucherDetails.update({
-           expiryDate: data.expiryDate
+    async getUser(id) {
+        const response = await users.findOne({ // Finding a user record with the provided phoneNumber
+            where: { phoneNumber: id }
+        });
+        return response; // Returning the response
+    }
+
+    async setPincode(phoneNumber, pincode) {
+        const response = await users.update({ // Updating the pincode of the user record
+            pincode: pincode
         }, {
             where: {
-                voucherId: data.voucherId
-            }
-        }
-        );
-
-        return response;
-    }
-
-    async updateVoucherBalance(data) {
-        data.phoneNumber = Number(data.phoneNumber);
-        data.voucherId = Number(data.voucherId);
-        data.amount=Number(data.amount);
-
-        let response = await voucherDetails.findOne(
-            {
-                where: { 
-                    voucherId:data.voucherId 
-                },
-            }
-        );
-        response = await voucherDetails.update({
-            amount: Number(response.amount)- Number(data.amount)
-        }, {
-            where: {
-                voucherId: data.voucherId
-            }
-        }
-        );
-
-        return response;
-    }
-
-    async getVoucher(data) {
-        data.phoneNumber = Number(data.phoneNumber);
-        
-        const response = await voucherDetails.findAll(
-            {
-            where: {
-                phoneNumber: data.phoneNumber
+                phoneNumber: phoneNumber
             }
         });
-        return response;
+        return response; // Returning the response
     }
 
-
-
+    async getPincode(phoneNumber) {
+        const response = await users.findOne({ // Finding a user record with the provided phoneNumber
+            where: { phoneNumber: phoneNumber }
+        });
+        return response; // Returning the response
+    }
 }
 
-module.exports = VoucherRepository;
+module.exports = UserRepository; // Exporting the UserRepository class

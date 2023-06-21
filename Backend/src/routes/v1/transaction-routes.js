@@ -1,9 +1,9 @@
-const express = require("express");
-const { TransactionController, UserController, WalletController } = require('../../controllers')
+const express = require("express"); // Importing the express module
+const { TransactionController, UserController, WalletController } = require('../../controllers'); // Importing the TransactionController, UserController, and WalletController from controllers
 
+const router = express.Router(); // Creating an instance of the express Router
 
-const router = express.Router();
+router.post('/checkPincode', UserController.checkPincode, TransactionController.twilio, WalletController.addMoneyToWalletInw2wTransfer, WalletController.deleteNotes, TransactionController.addTransaction);
+// Defining a POST route with the path '/checkPincode' and handling it with multiple functions from UserController, TransactionController, and WalletController
 
-router.post('/checkPincode', UserController.checkPincode, TransactionController.twilio, WalletController.addMoneyToWalletInw2wTransfer, WalletController.deleteNotes,  TransactionController.addTransaction);
-
-module.exports = router;
+module.exports = router; // Exporting the router

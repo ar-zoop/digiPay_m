@@ -1,11 +1,11 @@
-const { SuccessResponse, ErrorResponse } = require('../utils/common');
-const { Twilio } = require('../utils/common')
-const {TransactionService}= require ('../services');
+const { SuccessResponse, ErrorResponse } = require('../utils/common'); // Importing 'SuccessResponse' and 'ErrorResponse' from '../utils/common' module
+const { Twilio } = require('../utils/common'); // Importing 'Twilio' from '../utils/common' module
+const { TransactionService } = require('../services'); // Importing 'TransactionService' from '../services' module
 
-
+// Function for returning the response
 async function returnTheResponse(req, res) {
 	try {
-		const response = await UserService.getPincode(req.body.phoneNumber);
+		const response = await UserService.getPincode(req.body.phoneNumber); // Get pincode for a phone number
 		SuccessResponse.data = req.body;
 		return res.status(201).json(SuccessResponse);
 	} catch (error) {
@@ -14,7 +14,8 @@ async function returnTheResponse(req, res) {
 	}
 }
 
-async function twilio(req,res, next) {
+// Function for sending a text message using Twilio
+async function twilio(req, res, next) {
 	try {
 		const body = {
 			to: String(req.body.phoneNumber),
@@ -29,12 +30,12 @@ async function twilio(req,res, next) {
 	}
 }
 
-
+// Function for adding a transaction
 async function addTransaction(req, res) {
 	try {
 		const response = await TransactionService.addTransaction({
-			merchantPhoneNumber: req.body.phoneNumber, 
-			userPhoneNumber: req.body.userPhoneNumber, 
+			merchantPhoneNumber: req.body.phoneNumber,
+			userPhoneNumber: req.body.userPhoneNumber,
 			amount: req.body.amount,
 			voucherId: req.body.voucherId
 		});
@@ -47,7 +48,7 @@ async function addTransaction(req, res) {
 }
 
 module.exports = {
-	returnTheResponse,
-	twilio,
-	addTransaction
+	returnTheResponse, // Exporting the 'returnTheResponse' function
+	twilio, // Exporting the 'twilio' function
+	addTransaction // Exporting the 'addTransaction' function
 }

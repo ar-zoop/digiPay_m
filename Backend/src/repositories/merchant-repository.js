@@ -1,31 +1,25 @@
-const CrudRepository = require("./crud-repository");
-const { merchants } = require("../models");
+const CrudRepository = require("./crud-repository"); // Importing the CrudRepository class
+const { merchants } = require("../models"); // Importing the merchants model
 
 class MerchantRepository extends CrudRepository {
     constructor() {
-        super(merchants);
+        super(merchants); // Calling the constructor of the parent CrudRepository class with the merchants model
     }
 
     async createUser(phoneNumber, password, purpose) {
-        const data = { 
-            phoneNumber: phoneNumber, password: password, purpose:purpose };
-        const response = await merchants.create(
-            data
-        );
-        return response;
+        const data = {
+            phoneNumber: phoneNumber, password: password, purpose: purpose
+        }; // Creating a data object with the provided parameters
+        const response = await merchants.create(data); // Creating a new merchant record with the provided data
+        return response; // Returning the response
     }
 
     async getUser(id) {
-        const response = await merchants.findOne(
-            {
-                where: { phoneNumber: id }
-            }
-        );
-        return response;
+        const response = await merchants.findOne({ // Finding a merchant record with the provided phoneNumber
+            where: { phoneNumber: id }
+        });
+        return response; // Returning the response
     }
 }
 
-
-
-
-module.exports = MerchantRepository;
+module.exports = MerchantRepository; // Exporting the MerchantRepository class
