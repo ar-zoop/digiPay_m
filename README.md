@@ -194,6 +194,7 @@ npm run dev
 ![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/811c04bc-f4ca-41a2-a61c-8d9004c86074)
 
 10. POST Merchant: Signup `localhost:3000/api/v1/merchants`
+![image](https://github.com/ar-zoop/digiPay_m/assets/65864642/943d8b27-b167-4c38-b93b-0c107949d151)
 
 
 11. POST Merchant: SignIn `localhost:3000/api/v1/merchants/signin`
