@@ -65,9 +65,9 @@ Lets take a look inside the `src` folder
 
 ### Setting up backend 
 Go inside the folder path and execute the following command:
-
+```
 npm install
-
+```
 In the root directory create a .env file and add the following env variables
 
 PORT=<port number of your choice>
@@ -88,44 +88,46 @@ Navigate to the frontend directory: cd frontend
 
 Run the following command to install frontend dependencies:
 
-
+```
 npm install
+```
 
 
-
-_Configuration_
+__Configuration__
 
 If the project requires configuration, you may need to provide specific details or environment variables for both the backend and frontend.
 
-_Backend Configuration_
+__Backend Configuration__
 
 Inside the `backend` directory, create a `.env` file based on the provided .`env.example` file.
 Update the necessary environment variables in the `.env` file, such as the database connection URL, JWT secret, or any other configuration specific to your project.
-Frontend Configuration
+
+__Frontend Configuration__
+
 Inside the `frontend` directory, create a `.env` file based on the provided `.env.example` file.
 Update the necessary environment variables in the `.env` file, such as the backend API URL or any other configuration specific to your project.
 
-_Backend_
+__Backend__
 
 Open a terminal and navigate to the backend directory.
 
 Run the following command to start the backend server:
 
 To run the server execute : 
-
+```
 npm run dev
-
+```
 
 This command will start the backend server, which will listen for incoming API requests.
 
-_Frontend_
+__Frontend__
 
 Open a new terminal window (while keeping the backend server running in the previous terminal) and navigate to the frontend directory.
 
 Run the following command to start the frontend development server:
-
+```
 npm run dev
-
+```
 
 
 ## Features
