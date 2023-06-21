@@ -3,11 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:5000"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,26 +11,24 @@
   },
   "dependencies": {
     "antd": "^5.6.1",
-    "cors": "^2.8.5",
-    "http-proxy-middleware": "^2.0.6",
-    "http-status-codes": "^2.2.0",
+    "chart.js": "^4.3.0",
     "js-cookie": "^3.0.5",
     "js-cookies": "^1.0.4",
-    "proxy": "^2.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1",
+    "react-icons": "^4.9.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-lazy-load-image-component": "^1.5.6",
     "react-player": "^2.11.0",
     "react-qr-code": "^2.0.11",
     "react-qrcode": "^0.3.6",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.13.0",
+    "react-router-dom": "^6.6.2",
     "react-select": "^5.7.0",
     "regedit": "^5.1.2",
-    "sass": "^1.63.5"
+    "sass": "^1.63.4",
+    "vue-chartjs": "^5.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

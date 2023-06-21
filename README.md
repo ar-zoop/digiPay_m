@@ -126,6 +126,11 @@ PORT=<port number of your choice>
 ex: `PORT=5137`
 
 
+<<<<<<< HEAD
+=======
+npm install
+
+>>>>>>> 13840a376e042a926ca86927f50d2b7e66e8e37f
 ## Configuration
 
 If the project requires configuration, you may need to provide specific details or environment variables for both the backend and frontend.
@@ -152,7 +157,11 @@ Open a new terminal window (while keeping the backend server running in the prev
 
 Run the following command to start the frontend development server: `npm run dev`
 
+<<<<<<< HEAD
 ## Features of the App
+=======
+## Features
+>>>>>>> 13840a376e042a926ca86927f50d2b7e66e8e37f
 ### User
 - Request Vouchers
 - Extend Expiry of a voucher
@@ -238,3 +247,9 @@ Run the following command to start the frontend development server: `npm run dev
 
 ![image](https://github.com/Hanshika-Mehta/frontend_digipay/assets/65864642/8544e1a5-c06c-450b-aad5-1182070827f5)
 
+<<<<<<< HEAD
+=======
+
+  
+   
+>>>>>>> 13840a376e042a926ca86927f50d2b7e66e8e37f

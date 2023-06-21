@@ -4,67 +4,28 @@ import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo1.png";
 import Cookies from "js-cookie";
-import StatusCodes from "http-status-codes"
 
 const Login = () => {
-  // const history = useHistory()
   const initialValues = { phoneNumber: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
 
-
-
   const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target ;
+    const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
     console.log(formValues);
   };
 
-
-
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // setFormErrors(validate(formValues));
-    // setIsSubmit(true);  
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);
 
-    const { phoneNumber, password } = formValues
-  
-    console.log(phoneNumber);
-    
-    const formData = new URLSearchParams();
-    formData.append("phoneNumber", phoneNumber);
-    formData.append("password", password);
-
-    const res = await fetch("http://localhost:3000/api/v1/users/signin", {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-      },
-      
-      body: formData.toString()
-    })
-    console.log(res);
-
-const data= await res.json()
-    if (!data){
-      window.alert("Invalid Registration")
-      console.log("Invalid Registration")
-    }
-    else{
-      window.alert("Registration Successfull")
-      console.log("Successfull Registration")
+    if (Object.keys(formErrors).length === 0) {
       navigate("/Dashboard");
-
-      // history.push("/Dashboard")
     }
-
-    // if (Object.keys(formErrors).length === 0) {
-    //   navigate("/Dashboard");
-    // }
   };
 
   useEffect(() => {
@@ -108,7 +69,7 @@ const data= await res.json()
       </div>
 
       <div className="loginRight">
-          <form method="POST">
+        <form onSubmit={handleSubmit}>
           <h1 className="loginHeading">Login</h1>
           <input
             className="inputBox"
@@ -130,7 +91,7 @@ const data= await res.json()
             value={formValues.password}
           />
 
-          <button type="submit" className="loginButton" value="api/v1/users/signin" onClick={handleSubmit}>
+          <button type="submit" className="loginButton">
             Login
           </button>
           <Link to="/register">
