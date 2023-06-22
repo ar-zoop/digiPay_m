@@ -1,37 +1,47 @@
-const { IABankRepository } = require("../repositories"); // Importing the IABankRepository from repositories
+const { IABankRepository } = require("../repositories");
+const AppError = require('../utils/errors/app-error');
+const { StatusCodes } = require('http-status-codes');
+const { response } = require("express");
+const { Console } = require("winston/lib/winston/transports");
+const { use } = require("../routes");
 
-const iaBankRepo = new IABankRepository(); // Creating an instance of the IABankRepository
+const iaBankRepo = new IABankRepository();
+
 
 async function createIssuerBank(data) {
+ 
     try {
-        const response = await iaBankRepo.createBank(data); // Creating a new issuer bank using the IABankRepository
-        return response; // Returning the response
+        const response = await iaBankRepo.createBank(data);
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
 async function reduceMoneyFromIssuerBank(data) {
-    console.log("service");
+
     try {
-        const response = await iaBankRepo.reduceMoneyFromIssuerBank(data); // Reducing money from the issuer bank using the IABankRepository
-        return response; // Returning the response
+        const response = await iaBankRepo.reduceMoneyFromIssuerBank(data);
+   
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
 async function addMoneyToAcquirerBank(data) {
+
     try {
-        const response = await iaBankRepo.addMoneyToAcquirerBank(data); // Adding money to the acquirer bank using the IABankRepository
-        return response; // Returning the response
+        const response = await iaBankRepo.addMoneyToAcquirerBank(data);
+
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
+
 module.exports = { createIssuerBank, reduceMoneyFromIssuerBank, addMoneyToAcquirerBank };
-// Exporting the functions as an object

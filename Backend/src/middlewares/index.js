@@ -1,3 +1,5 @@
 module.exports = {
-    IABankMiddleware: require('./iaBank-middleware') // Exporting the IABankMiddleware from iaBank-middleware file
-};
+    IABankMiddleware: require('./iaBank-middleware'),
+    VoucherMiddleware: require('./voucher-middleware'),
+    MerchantMiddleware: require('./merchant-middleware.js')
+}

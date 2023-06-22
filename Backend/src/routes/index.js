@@ -1,8 +1,9 @@
-const express = require('express'); // Importing the express module
-const v1Routes = require('./v1'); // Importing the v1Routes from the v1 file
+const express = require('express')
 
-const router = express.Router(); // Creating an instance of the express Router
+const v1Routes = require('./v1')
 
-router.use('/v1', v1Routes); // Using the v1Routes for paths starting with '/v1'
+const router = express.Router()
 
-module.exports = router; // Exporting the router
+router.use('/v1', v1Routes)
+
+module.exports = router

@@ -1,97 +1,109 @@
-const { Auth } = require('../utils/common'); // Importing the Auth module for authentication
-const { UserRepository } = require("../repositories"); // Importing the UserRepository from repositories
-const AppError = require("../utils/errors/app-error"); // Importing the AppError class for custom errors
-const { StatusCodes } = require("http-status-codes"); // Importing the StatusCodes for HTTP status codes
-const userRepo = new UserRepository(); // Creating an instance of the UserRepository
+const {Auth}= require ('../utils/common');
+const { UserRepository } = require("../repositories");
+const bcrypt = require('bcrypt');
+const { response } = require("express");
+const AppError = require("../utils/errors/app-error");
+const { StatusCodes } = require("http-status-codes");
+const jwt= require('jsonwebtoken');
+const userRepo = new UserRepository();
+const {ServerConfig}= require('../config');
+const serverConfig = require("../config/server-config");
 
 async function createUser(data) {
     try {
-        const response = await userRepo.createUser(data.name, data.phoneNumber, data.password); // Creating a new user using the UserRepository
-        return response; // Returning the response
-    } catch (error) {
-        console.log(error.name); // Logging the error name
+        const response = await userRepo.createUser(data.name, data.phoneNumber, data.password);
+        return response;
+    } catch(error) {
+        console.log(error.name);
         if (error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError') {
             let explanation = [];
             error.errors.forEach((err) => {
                 explanation.push(err.message);
             });
-            throw new AppError(explanation, StatusCodes.BAD_REQUEST); // Throwing a custom AppError with explanation and status code
+            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
-        throw new AppError('Cannot create a new user object', StatusCodes.INTERNAL_SERVER_ERROR); // Throwing a custom AppError for internal server error
+        throw new AppError('Cannot create a new user object', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 async function getUser(id) {
     try {
-        const response = await userRepo.getUser(id); // Retrieving the user from the UserRepository
-        return response; // Returning the response
+        const response = await userRepo.getUser(id);
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
 async function signin(data) {
     try {
-        const user = await userRepo.getUser(data.phoneNumber); // Retrieving the user from the UserRepository
+        console.log("user service in signin")
+        console.log(data.phoneNumber)
+        const user = await userRepo.getUser(data.phoneNumber);
         if (!user) {
-            throw new AppError('No user found for the given phone number', StatusCodes.NOT_FOUND); // Throwing a custom AppError for user not found
+            throw new AppError('No user found for the given phone number', StatusCodes.NOT_FOUND);
         }
-        const passwordMatch = Auth.checkPassword(data.password, user.password); // Checking if the provided password matches the stored password
+        const passwordMatch = Auth.checkPassword(data.password, user.password);
+        console.log("password match", passwordMatch)
         if (!passwordMatch) {
-            throw new AppError('Invalid password', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for invalid password
+            throw new AppError('Invalid password', StatusCodes.BAD_REQUEST);
         }
-        const jwt = Auth.createToken({ id: user.phoneNumber }); // Creating a JWT token for authentication
-        return jwt; // Returning the JWT token
+        const jwt = Auth.createToken({ id: user.phoneNumber });
+        console.log(jwt)
+        return jwt;
     } catch (error) {
         if (error instanceof AppError) throw error;
         console.log(error);
-        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR); // Throwing a custom AppError for internal server error
+        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 async function isAuthenticated(token) {
     try {
         if (!token) {
-            throw new AppError('Missing JWT token', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for missing JWT token
+            throw new AppError('Missing JWT token', StatusCodes.BAD_REQUEST);
         }
-        const response = verifyToken(token); // Verifying the JWT token
-        const user = await userRepo.get(response.id); // Retrieving the user from the UserRepository
+        const response = verifyToken(token);
+        const user = await userRepo.get(response.id);
         if (!user) {
-            throw new AppError('No user found', StatusCodes.NOT_FOUND); // Throwing a custom AppError for user not found
+            throw new AppError('No user found', StatusCodes.NOT_FOUND);
         }
-        return user.id; // Returning the user ID
+        return user.id;
     } catch (error) {
         if (error instanceof AppError) throw error;
         if (error.name == 'JsonWebTokenError') {
-            throw new AppError('Invalid JWT token', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for invalid JWT token
+            throw new AppError('Invalid JWT token', StatusCodes.BAD_REQUEST);
         }
         if (error.name == 'TokenExpiredError') {
-            throw new AppError('JWT token expired', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for expired JWT token
+            throw new AppError('JWT token expired', StatusCodes.BAD_REQUEST);
         }
         console.log(error);
-        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR); // Throwing a custom AppError for internal server error
+        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
+
 async function setPincode(id, pincode) {
     try {
-        const response = await userRepo.setPincode(id, pincode); // Setting the pincode for the user
-        return response; // Returning the response
+        const response = await userRepo.setPincode(id, pincode);
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
 async function getPincode(id) {
     try {
-        const response = await userRepo.getPincode(id); // Retrieving the pincode for the user
-        return response; // Returning the response
+        // console.log("id in user-service", id)
+        const response = await userRepo.getPincode(id);
+        // console.log("response in user-service =>", response)
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
-module.exports = { createUser, getUser, getPincode, setPincode, signin, isAuthenticated }; // Exporting the createUser, getUser, getPincode, setPincode, signin, and isAuthenticated functions
+module.exports = { createUser, getUser, getPincode, setPincode, signin,  isAuthenticated };

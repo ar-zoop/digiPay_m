@@ -1,14 +1,22 @@
-var moment = require('moment'); // Importing the moment library for date and time operations
-const { TransactionRepository } = require("../repositories"); // Importing the TransactionRepository from repositories
-const transactionRepo = new TransactionRepository(); // Creating an instance of the TransactionRepository
+var moment = require('moment');
+const { TransactionRepository } = require("../repositories");
+const AppError = require('../utils/errors/app-error');
+const { StatusCodes } = require('http-status-codes');
+const { response } = require("express");
+const { Console } = require("winston/lib/winston/transports");
+const { use } = require("../routes");
 
-async function addTransaction(data) {
+const transactionRepo = new TransactionRepository();
+
+
+async function addTransaction (data){
     try {
-        var searchStartDate = moment(); // Getting the current date and time
+        var searchStartDate = moment();
         var currentTime = moment();
-        const startDate = moment(searchStartDate).format('YYYY-MM-DD'); // Formatting the start date
-        var currentTimeString = currentTime.format('HH:mm:ss'); // Formatting the current time
-        const obj = { // Creating an object with the transaction details
+        const startDate = moment(searchStartDate).format('YYYY-MM-DD');
+        var currentTimeString = currentTime.format('HH:mm:ss');
+        // console.log(currentTimeString);
+        const obj = { 
             merchantPhoneNumber: data.merchantPhoneNumber,
             userPhoneNumber: data.userPhoneNumber,
             amount: data.amount,
@@ -16,12 +24,12 @@ async function addTransaction(data) {
             date: startDate,
             time: currentTimeString
         };
-        const response = await transactionRepo.create(obj); // Creating a new transaction using the TransactionRepository
-        return response; // Returning the response
+        const response = await transactionRepo.create(obj);
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
-module.exports = { addTransaction }; // Exporting the addTransaction function
+module.exports = { addTransaction };

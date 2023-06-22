@@ -1,50 +1,61 @@
-const { VoucherRepository } = require("../repositories"); // Importing the VoucherRepository from repositories
-const voucherRepo = new VoucherRepository(); // Creating an instance of the VoucherRepository
+const { VoucherRepository } = require("../repositories");
+const AppError = require('../utils/errors/app-error');
+const { StatusCodes } = require('http-status-codes');
+const { response } = require("express");
+const { Console } = require("winston/lib/winston/transports");
+const { use } = require("../routes");
+
+const voucherRepo = new VoucherRepository();
+
+
 
 async function createVoucher(data) {
     try {
+     
         const response = await voucherRepo.createVoucher({
-            phoneNumber: data.phoneNumber,
-            amount: data.amount,
+            phoneNumber:data.phoneNumber,
+            amount:data.amount,
             expiryDate: data.expiryDate,
-            purpose: data.purpose,
-            isValid: true
-        }); // Creating a new voucher using the VoucherRepository
-        return response; // Returning the response
+            purpose:data.purpose,
+            isValid:true
+        });
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
 async function updateVoucher(data) {
     try {
-        const response = await voucherRepo.updateVoucher(data); // Updating the voucher using the VoucherRepository
-        return response; // Returning the response
+       
+        const response = await voucherRepo.updateVoucher(data);
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
 async function updateVoucherBalance(data) {
     try {
-        const response = await voucherRepo.updateVoucherBalance(data); // Updating the voucher balance using the VoucherRepository
-        return response; // Returning the response
+        const response = await voucherRepo.updateVoucherBalance(data);
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
-async function getVoucher(data) {
+async function getVoucher(data){
     try {
-        const response = await voucherRepo.getVoucher(data); // Retrieving the vouchers using the VoucherRepository
-        return response; // Returning the response
+        console.log("in voucher-service", data);
+        const response = await voucherRepo.getVoucher(data);
+        return response;
     } catch (error) {
-        console.log(error); // Logging the error
-        throw error; // Throwing the error
+        console.log(error);
+        throw error;
     }
 }
 
-module.exports = { createVoucher, updateVoucher, getVoucher, updateVoucherBalance }; // Exporting the createVoucher, updateVoucher, getVoucher, and updateVoucherBalance functions
+module.exports = { createVoucher, updateVoucher, getVoucher, updateVoucherBalance };

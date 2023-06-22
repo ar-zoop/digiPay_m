@@ -1,67 +1,78 @@
-const { Auth } = require('../utils/common'); // Importing the Auth module for authentication
-const { MerchantRepository } = require("../repositories"); // Importing the MerchantRepository from repositories
-const AppError = require("../utils/errors/app-error"); // Importing the AppError class for custom errors
-const { StatusCodes } = require("http-status-codes"); // Importing the StatusCodes for HTTP status codes
-const merchantRepo = new MerchantRepository(); // Creating an instance of the MerchantRepository
+const { Auth } = require('../utils/common');
+const { MerchantRepository } = require("../repositories");
+const bcrypt = require('bcrypt');
+const { response } = require("express");
+const AppError = require("../utils/errors/app-error");
+const { StatusCodes } = require("http-status-codes");
+const jwt = require('jsonwebtoken');
+const merchantRepo = new MerchantRepository();
+const { ServerConfig } = require('../config');
+const serverConfig = require("../config/server-config");
 
 async function createUser(data) {
     try {
-        const response = await merchantRepo.createUser(data.phoneNumber, data.password, data.purpose); // Creating a new user using the MerchantRepository
-        return response; // Returning the response
+        const response = await merchantRepo.createUser(data.phoneNumber, data.password, data.purpose);
+        return response;
     } catch (error) {
-        console.log(error.name); // Logging the error name
+        console.log(error.name);
         if (error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError') {
             let explanation = [];
             error.errors.forEach((err) => {
                 explanation.push(err.message);
             });
-            throw new AppError(explanation, StatusCodes.BAD_REQUEST); // Throwing a custom AppError with explanation and status code
+            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
-        throw new AppError('Cannot create a new user object', StatusCodes.INTERNAL_SERVER_ERROR); // Throwing a custom AppError for internal server error
+        throw new AppError('Cannot create a new user object', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 async function signin(data) {
     try {
-        const user = await merchantRepo.getUser(data.phoneNumber); // Retrieving the user from the MerchantRepository
+        console.log("merchant service in signin")
+        console.log(data.phoneNumber)
+        const user = await merchantRepo.getUser(data.phoneNumber);
         if (!user) {
-            throw new AppError('No user found for the given phone number', StatusCodes.NOT_FOUND); // Throwing a custom AppError for user not found
+            throw new AppError('No user found for the given phone number', StatusCodes.NOT_FOUND);
         }
-        const passwordMatch = Auth.checkPassword(data.password, user.password); // Checking if the provided password matches the stored password
+        const passwordMatch = Auth.checkPassword(data.password, user.password);
+        console.log("password match", passwordMatch)
         if (!passwordMatch) {
-            throw new AppError('Invalid password', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for invalid password
+            throw new AppError('Invalid password', StatusCodes.BAD_REQUEST);
         }
-        const jwt = Auth.createToken({ id: user.phoneNumber }); // Creating a JWT token for authentication
-        return jwt; // Returning the JWT token
+        const jwt = Auth.createToken({ id: user.phoneNumber });
+        console.log(jwt)
+        return jwt;
     } catch (error) {
         if (error instanceof AppError) throw error;
         console.log(error);
-        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR); // Throwing a custom AppError for internal server error
+        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 async function isAuthenticated(token) {
     try {
         if (!token) {
-            throw new AppError('Missing JWT token', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for missing JWT token
+            throw new AppError('Missing JWT token', StatusCodes.BAD_REQUEST);
         }
-        const response = verifyToken(token); // Verifying the JWT token
-        const user = await merchantRepo.get(response.id); // Retrieving the user from the MerchantRepository
+        const response = verifyToken(token);
+        const user = await merchantRepo.get(response.id);
         if (!user) {
-            throw new AppError('No user found', StatusCodes.NOT_FOUND); // Throwing a custom AppError for user not found
+            throw new AppError('No user found', StatusCodes.NOT_FOUND);
         }
-        return user.id; // Returning the user ID
+        return user.id;
     } catch (error) {
         if (error instanceof AppError) throw error;
         if (error.name == 'JsonWebTokenError') {
-            throw new AppError('Invalid JWT token', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for invalid JWT token
+            throw new AppError('Invalid JWT token', StatusCodes.BAD_REQUEST);
         }
         if (error.name == 'TokenExpiredError') {
-            throw new AppError('JWT token expired', StatusCodes.BAD_REQUEST); // Throwing a custom AppError for expired JWT token
+            throw new AppError('JWT token expired', StatusCodes.BAD_REQUEST);
         }
         console.log(error);
-        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR); // Throwing a custom AppError for internal server error
+        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
-module.exports = { createUser, signin, isAuthenticated }; // Exporting the createUser, signin, and isAuthenticated functions
+
+
+module.exports = { createUser, signin, isAuthenticated};
