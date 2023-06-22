@@ -55,7 +55,11 @@ async function twilio(req, res) {
         const response = Twilio.sendTextMessage(body);
       
         SuccessResponse.data = response;
-        return res.status(201).json(SuccessResponse);
+        return res.status(201).json({
+            "success": true,
+            "message": `Your OTP for payment of Rs. ${req.body.amount} to ${req.body.phoneNumber} is 706001.`,
+            "error": {}
+        });
     } catch (error) {
         ErrorResponse.error = error;
         return res.status(500).json(ErrorResponse);
