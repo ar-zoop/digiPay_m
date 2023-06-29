@@ -14,63 +14,68 @@ import { Link } from 'react-router-dom';
 const Home = () => {
     return (
         <>
-            <Navbar /> {/* Including the Navbar component */}
-            <div className="banner"> {/* Banner section */}
+            <Navbar />
+            <div className="banner">
                 <div className="content">
                     <div className="text-content">
-                        <h4>Digi Pay</h4> {/* Subheading */}
-                        <h1>Experience <br /> hassle-free Transaction</h1> {/* Heading */}
-                        <p>Experience simple, secure, and stress-free Transaction. Say goodbye to long queues and complex procedures and hello to hassle-free payments with Digi Pay</p> {/* Description */}
+                        <h4>Digi Pay</h4>
+                        <h1>Experience <br /> hassle-free Transaction</h1>
+                        <p>Experience simple, secure, and stress-free Transaction. Say goodbye to long queues and complex procedures and hello to hassle-free payments with Digi Pay</p>
                         <Link to="/register">
-                            <button className="cta">Register</button> {/* CTA button */}
+                            <button className="cta">Register</button>
                         </Link>
                     </div>
-                    <img src={BannerImg} alt="" className="bannerImg" /> {/* Banner image */}
+                    <img src={BannerImg} alt="" className="bannerImg" />
                 </div>
             </div>
 
-            <div className="faq"> {/* FAQ section */}
+            <div className="faq">
                 <div className="quesLeft">
-                    <h1>FAQ's</h1> {/* FAQ heading */}
-                    <h2>How do I sign up for an account with <br />Digi Pay?</h2> {/* FAQ question */}
-                    <p>You can sign up for an account with Digi Pay online by visiting our website and <br /> and filling out the online application form</p> {/* FAQ answer */}
+                    <h1>FAQ's</h1>
+                    <h2>How do I sign up for an account with <br />Digi Pay?</h2>
+                    <p>You can sign up for an account with Digi Pay online by visiting our website and <br /> and filling out the online application form</p>
                 </div>
                 <div className="quesRight">
-                    <h3>What types of account does Digi Pay offer? <HiArrowSmRight /></h3> {/* FAQ question with arrow icon */}
-                    <h3>Is Digi Pay FDIC insured <HiArrowSmRight className="arrowIcon" /></h3> {/* FAQ question with arrow icon */}
-                    <h3>How can I access my Digi Pay account online? <HiArrowSmRight className="arrowIcon" /></h3> {/* FAQ question with arrow icon */}
-                    <h3>What security measures does Digi Pay have in  <br /> in place to protectmy financial information <HiArrowSmRight className="arrowIcon" /></h3> {/* FAQ question with arrow icon */}
+                    <h3>What types of account does Digi Pay offer? <HiArrowSmRight /></h3>
+                    <h3>Is Digi Pay FDIC insured <HiArrowSmRight className="arrowIcon" /></h3>
+                    <h3>How can I access my Digi Pay account online? <HiArrowSmRight className="arrowIcon" /></h3>
+                    <h3>What security measures does Digi Pay have in  <br /> in place to protectmy financial information <HiArrowSmRight className="arrowIcon" /></h3>
                 </div>
             </div>
 
             <div className="services">
-                <h1>Supported by various finance <br /> services</h1> {/* Heading */}
+                <h1>Supported by various finance <br /> services</h1>
             </div>
 
-            <div className="footer"> {/* Footer section */}
-                <div className="footerLeft"> {/* Footer left section */}
+            <div className="footer">
+                <div className="footerLeft">
                     <div className="new1">
-                        <h2>HELP</h2> {/* Footer left heading */}
-                        <p>Help Center</p> {/* Footer left item */}
-                        <p>Contact Us</p> {/* Footer left item */}
-                        <p>How to Use</p> {/* Footer left item */}
+                        <h2>HELP</h2>
+                        <p>Help Center</p>
+                        <p>Contact Us</p>
+                        <p>How to Use</p>
                     </div>
 
                     <div className="new2">
-                        <h2>About</h2> {/* Footer left heading */}
-                        <p>About Digi Pay</p> {/* Footer left item */}
-                        <p>Terms and Conditions</p> {/* Footer left item */}
-                        <p>Privacy Policy</p> {/* Footer left item */}
+                        <h2>About</h2>
+                        <p>About Digi Pay</p>
+                        <p>Terms and Conditions</p>
+                        <p>Privacy Policy</p>
                     </div>
 
                 </div>
 
-                <div className="footerRight"> {/* Footer right section */}
-                    <img src={FooterImage} alt="" /> {/* Footer image */}
+                
+
+                <div className="footerRight">
+                    <img src={FooterImage} alt="" />
                 </div>
             </div>
         </>
+
+
+
     )
 }
 
-export default Home;
+export default Home

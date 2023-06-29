@@ -12,15 +12,14 @@ import LowerProfile from '../../components/LowerProfile';
 const Dashboard = () => {
     const navigate = useNavigate();
 
-    //Handler for Analysis button click
+
     const handleAnalysisButtonClick = () => {
         navigate('/Analysis'); // Navigate to '/Merchant' on button click
     };
-    //Handler for Pay button click
     const handlePayButtonClick = () => {
         navigate('/voucherpage'); // Navigate to '/voucherpage' on button click
     };
-    //Handler for Reward Points button click
+    
     const handleRewardButtonClick = () => {
         navigate('/rewards'); // Navigate to '/reward' on button click
       };
@@ -46,20 +45,14 @@ const Dashboard = () => {
                 <div className="transferMoney">
                     <h3 style={{ textAlign: "left", color: "#3f4040" }}>Transfer Money</h3>
                     <div className="start2">
-
-                        {/*Analysis button*/}
                         <button className="box1" onClick={handleAnalysisButtonClick}>
                             <h4 className="transferHeading">Analysis</h4>
                             <MdOutlineSensorOccupied style={{ marginTop: '6px' }} />
                         </button>
-
-                        {/*Pay button*/}
                         <button className="box1">
                             <h4 className="transferHeading" onClick={handlePayButtonClick}>Pay</h4>
                             <FaEnvelopeOpenText style={{ marginTop: "6px" }} />
                         </button>
-
-                        {/*Reward Points button*/}
                         <button className="box1">
                             <h4 className="transferHeading" onClick={handleRewardButtonClick}>Reward Points</h4>
                             <FaBlenderPhone style={{ marginTop: "6px" }} />

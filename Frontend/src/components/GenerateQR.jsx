@@ -10,25 +10,23 @@ import OTPPopup from '../modals/otpModal/OTPPopup';
 import { Link } from 'react-router-dom';
 import QRCode from 'react-qr-code';
 import ProfilePic from "../assets/dbs2.jpg"
+import { ToastContainer, toast } from 'react-toastify';
 
 const GenerateQR = () => {
   const [title, setTitle] = useState(''); // Add the title state variable
-  const [timedPopup, setTimedPopup] = useState(false);
-
-  useEffect(() => {
-  setTimeout(() => {
-    setTimedPopup(true);
-  }, 10000);
-
-}, []);
 
   const [value, setValue] = useState();
   const [back, setBack] = useState('#FFFFFF');
   const [fore, setFore] = useState('#000000');
   const [size, setSize] = useState(256);
 
+  const handleButtonClick = () => {
+    toast.success("Transaction Completed");
+};
+
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', height: '100%' }}>
+    <ToastContainer />
       <LeftProfile />
       <div className="centerContainer" style={{ width: '40%' }}>
         <div className="centerHeading">
@@ -50,8 +48,9 @@ const GenerateQR = () => {
               </div>
             </div>
             <div className='part2'>
-              <p className="WelcomeText" style={{fontSize:'13px'}} ><b>UPI_ID:</b>8030411314@digipay </p>
-              <p className="WelcomeText" ><b>Amount:</b>Rs.500 </p>
+              <p className="WelcomeText" style={{fontSize:'18px'}} ><b>UPI_ID:</b>8030411314@digipay </p>
+              <p className="WelcomeText" style={{fontSize:'18px'}} ><b>Enter Amount:</b></p>
+              <input className="inputBox"></input>
               </div>    
               <div style={{marginTop:'190px'}}>
             <h4 className="WelcomeText" style={{marginBottom:'20px'}}>Select the Purpose</h4>
@@ -63,7 +62,7 @@ const GenerateQR = () => {
           >
             <option value=""></option>
             <option value="Scholarship">Scholarship</option>
-            <option value="Subsidy">Subsidy</option>
+            <option value="Subsidy">Fertilizer</option>
             <option value="Pension">Pension</option>
             <option value="Allowance">Allowance</option>
           </select>
@@ -91,15 +90,12 @@ const GenerateQR = () => {
             />
           )}
 
+          <button onClick={handleButtonClick} style={{backgroundColor: "white", color: "white", boxShadow: "rgb(255,255,255)", width: "10px", height: "10px"}}>1</button>
         </div>
         </div>
       </div>
       <RightProfile />
 
-      <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
-      <h3>Transaction Completed</h3>
-      <p>Amount  Rs. 500</p>
-      </Popup>
     </div>
   );
 };

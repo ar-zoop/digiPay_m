@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import "./voucherPage.scss";
 import LeftProfile from '../../components/LeftProfile/LeftProfile';
 import Coupon from "../../assets/upi.png";
+// import CenterProfile from '../../components/CenterProfile/CenterProfile';
 import RightProfile from '../../components/RightProfile/RightProfile';
-
 const GenerateQR = () => {
     return (
         <div className="voucherContainer">
-            <LeftProfile /> {/* Component for left profile */}
+            <LeftProfile />
             <div className="voucherCenter">
                 <div className="centerHeading">
                     <h2 style={{ color: "#3f4040" }}>Profile</h2>
@@ -19,34 +19,33 @@ const GenerateQR = () => {
                 </div>
 
                 <div className="coupons">
-                    <h2 style={{ textAlign: "left", color: "#3f4040" }}>Your Vouchers</h2>
+                    <h2 style={{ textAlign: "left", color: "#3f4040" }}>All Vouchers</h2>
                     <div className="voucherColumn1">
-                        {/* Voucher 1 */}
                         <div className="voucher">
-                            <Link to="/voucherID"><img src={Coupon} alt="" /></Link> {/* Image for voucher */}
-                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Worth ₹ 500</p> {/* Voucher details */}
+                            <Link to="/voucherID"><img src={Coupon} alt="" /></Link>
+                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Farming</p>
                         </div>
-                        {/* Voucher 2 */}
                         <div className="voucher">
-                            <img src={Coupon} alt="" /> {/* Image for voucher */}
-                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Worth ₹ 1000</p> {/* Voucher details */}
+                            <img src={Coupon} alt="" />
+                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Hospital Bills</p>
                         </div>
                     </div>
                     <div className="voucherColumn2">
-                        {/* Voucher 3 */}
                         <div className="voucher">
-                            <img src={Coupon} alt="" /> {/* Image for voucher */}
-                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Worth ₹ 5000</p> {/* Voucher details */}
+                            <img src={Coupon} alt="" />
+                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Subsidy</p>
                         </div>
-                        {/* Voucher 4 */}
                         <div className="voucher">
-                            <img src={Coupon} alt="" /> {/* Image for voucher */}
-                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Worth ₹ 10000</p> {/* Voucher details */}
+                            <img src={Coupon} alt="" />
+                            <p style={{ fontWeight: "600", marginTop: "15px" }}>Scholarship</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <RightProfile /> {/* Component for right profile */}
+
+
+            {/* <CenterProfile /> */}
+            <RightProfile />
         </div>
     )
 }
