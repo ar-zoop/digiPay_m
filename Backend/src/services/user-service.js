@@ -11,7 +11,7 @@ const serverConfig = require("../config/server-config");
 
 async function createUser(data) {
     try {
-        const response = await userRepo.createUser(data.name, data.phoneNumber, data.password);
+        const response = await userRepo.createUser(data.name, data.phoneNumber, data.password, data.pincode);
         return response;
     } catch(error) {
         console.log(error.name);
@@ -22,6 +22,7 @@ async function createUser(data) {
             });
             throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
+        console.log(error)
         throw new AppError('Cannot create a new user object', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }

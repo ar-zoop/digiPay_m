@@ -7,8 +7,8 @@ class UserRepository extends CrudRepository {
         super(users);
     }
 
-    async createUser(name, phoneNumber, password) {
-        const data = { name: name, phoneNumber:phoneNumber, password:password };
+    async createUser(name, phoneNumber, password, pincode) {
+        const data = { name: name, phoneNumber:phoneNumber, password:password, pincode : pincode };
         const response = await users.create(
             data
         );

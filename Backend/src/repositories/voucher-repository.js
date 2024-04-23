@@ -38,7 +38,7 @@ class VoucherRepository extends CrudRepository {
         data.phoneNumber = Number(data.phoneNumber);
         data.voucherId = Number(data.voucherId);
         data.amount=Number(data.amount);
-
+        console.log(data.amount);
         let response = await voucherDetails.findOne(
             {
                 where: { 
@@ -46,6 +46,7 @@ class VoucherRepository extends CrudRepository {
                 },
             }
         );
+        console.log(response);
         response = await voucherDetails.update({
             amount: Number(response.amount)- data.amount
         }, {

@@ -2,31 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
-      // id: {
-
-      //   type: Sequelize.INTEGER
-      // },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
+    await queryInterface.createTable('WalletCurrencies', {
+     
       phoneNumber: {
         type: Sequelize.BIGINT,
         allowNull: false
       },
-      walletId: {
+      srNo:{
         type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
+        allowNull:false,
+        autoIncrement:true,
+        primaryKey: true
       },
-      password: {
-        type: Sequelize.STRING,
+      value: {
+        type: Sequelize.BIGINT,
         allowNull: false
-      },
-      pincode: {
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -39,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('WalletCurrencies');
   }
 };

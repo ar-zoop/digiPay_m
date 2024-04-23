@@ -2,11 +2,11 @@
 const {
   Model
 } = require('sequelize');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const {ServerConfig}= require('../config');
 
 module.exports = (sequelize, DataTypes) => {
-  class Users extends Model {
+  class users extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Users.init({
+  users.init({
     name: { type: DataTypes.STRING, allowNull: false },
     phoneNumber: { type: DataTypes.BIGINT, allowNull: false, unique: true },
     walletId: { type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true },
@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'users',
   });
 
-  Users.beforeCreate(function encrypt(user){
+  users.beforeCreate(function encrypt(user){
     console.log("User object before encryption", user);
     const encryptedPassword= bcrypt.hashSync(user.password,Number(ServerConfig.SALT_ROUNDS)) ;
     user.password= encryptedPassword;
   });
-  return Users;
+  return users;
 };

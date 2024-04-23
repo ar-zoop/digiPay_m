@@ -2,30 +2,31 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
-      // id: {
-
-      //   type: Sequelize.INTEGER
-      // },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
+    await queryInterface.createTable('voucherDetails', {
       phoneNumber: {
-        type: Sequelize.BIGINT,
+        allowNull: false,
+        type: Sequelize.BIGINT
+      },
+      isValid: {
+        defaultValue: true ,
+        type: Sequelize.BOOLEAN
+      },
+      expiryDate: {
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
-      walletId: {
-        type: Sequelize.INTEGER,
+      amount: {
+        defaultValue: 0,
+        type: Sequelize.BIGINT
+      },
+      purpose: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      voucherId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      pincode: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -39,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('voucherDetails');
   }
 };
