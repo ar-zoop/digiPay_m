@@ -1,64 +1,140 @@
-import React, { useState } from 'react';
-import "./merchant.scss";
-import profilePic from "../../assets/dbs2.jpg";
-import QRImage from "../../assets/qrimage.png";
-import { MdOutlineQrCodeScanner } from "react-icons/md";
-import { BsShareFill } from "react-icons/bs";
-import LeftProfile from '../../components/LeftProfile/LeftProfile';
-import RightProfile from '../../components/RightProfile/RightProfile';
+import React, { useState, useEffect } from "react";
+import "./Merchant_Dashboard.scss";
+import Popup from "../../components/Popup";
+import { Button, Modal } from "antd";
+import ProfilePic from "../../assets/dbs2.jpg";
+import { CgBell } from "react-icons/cg";
+import { IoMdQrScanner } from "react-icons/io";
+import LeftProfile from "../../components/LeftProfile/LeftProfile";
+import RightProfile from "../../components/RightProfile/RightProfile";
+import ScanModal from "../../modals/scanModal/ScanModal";
+import bulletinImg from "../../assets/bulletin.jpeg";
+import categoryImg from "../../assets/categorygraph.jpeg";
+import analysisImg from "../../assets/analysis.jpeg";
+// import UserDetailModal from "../../modals/userDetail/UserDetailModal";
 
 const Merchant = () => {
-  // State for showing/hiding the amount modal
-  const [showAmountModal, setShowAmountModal] = useState(false);
+    const [showDetModal, setShowDetModal] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [showOtpModal, setShowOtpModal] = useState(false);
+    const [title, setTitle] = useState(''); // Add the title state variable
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [showScanModal, setShowScanModal] = useState(false);
+    // const [isModalVisible, setModalVisible] = useState(false);
+    const [showUserDetail, setShowUserDetail] = useState(false);
 
-  // Open the amount modal
-  const openAmountModal = () => {
-    setShowAmountModal(true);
-  };
 
-  // Close the amount modal
-  const closeAmountModal = () => {
-    setShowAmountModal(false);
-  };
 
-  return (
-    <div className="merchantContainer">
-      <LeftProfile />
 
-      <div className="merchantCenter">
-        <div className="centerHeading">
-          <h2 style={{ color: "#3f4040" }}>Profile</h2>
-          <div className="heading2">
-            <h4 style={{ color: "#59c59d", fontSize: "12px" }}>Current Balance</h4>
-            <h2 style={{ color: "#3f4040" }}>44,500.00</h2>
-          </div>
-        </div>
+    const closeUserDetailModal = () => {
+        setShowUserDetail(true);
+    };
 
-        <div className="merchantInfo">
-          <div className="mInfo1">
-            <img src={profilePic} alt="" className="profileImage" />
-            <h2 style={{ marginTop: "5px" }}>Shweta Mehta</h2>
-            <p style={{ color: "#252525", fontSize: "12px", marginTop: "5px" }}>UPI ID: 8030411314@digipay <span>Copy</span></p>
-            <p style={{ color: "#252525", fontSize: "12px", marginTop: "5px" }}>DigiPay: 8030411314</p>
-          </div>
-          <div className="minfo2">
-            <img src={QRImage} alt="" />
-            <p style={{ fontSize: "11px", textAlign: "center", padding: "3px", lineHeight: "13px" }}>Payments made to this QR through Paytm, DigiPay, GPay,<br /> PhonePe, or any other UPI app will be received <br /> in your <span>linked bank account</span></p>
+    const openScanModal = () => {
+        setShowScanModal(true);
+    };
 
-            {/* Modal for entering amount */}
-            <div className={`modal-NewAmountContainer ${showAmountModal}`}>
-              <button onClick={openAmountModal}>Scan QR <MdOutlineQrCodeScanner style={{ marginLeft: "6px" }} /></button>
-              {/* Render the amount modal if showAmountModal is true */}
-              {showAmountModal && <AmountModal closeModal={closeAmountModal} />}
+    const closeScanModal = () => {
+        setShowScanModal(false);
+    };
+
+
+    const openDetModal = () => {
+        setShowDetModal(true);
+    };
+
+    const closeDetModal = () => {
+        setShowDetModal(false);
+    };
+
+    const closeAmountModal = () => {
+        setShowAmountModal(false);
+    };
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    // const handleOk = () => {
+    //   setIsModalOpen(false);
+    //   <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+    //   <h3>Transaction Compleleted</h3>
+    //   </Popup>
+    // };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+    // const showOtpPopup = () => {
+    //   setShowOtpModal(true);
+    // };
+
+    // const closeOtpPopup = () => {
+    //   setShowOtpModal(false);
+    // };
+
+    return (
+        <div className="merchantContainer">
+            <LeftProfile />
+            <div className=""></div>
+
+            <div className="merchantCenter">
+                <div className="centerHeading">
+                    <div className="rightUpperOld">
+                        <h2 style={{}}>No of Transactions</h2>
+                        <h3 style={{}}>20</h3>
+                    </div>
+                    <div style={{}}>
+                        <h2>Amount</h2>
+                        <h3>4,500</h3>
+
+                    </div>
+
+
+
+                </div>
+                <div className="boxstyle">
+                    <button style={{ fontSize: "18px", color: "#573b87", textAlign: "center", cursor: "pointer", height: '100px', width: '150px', marginRight: "100px" }}>
+                        Add Vouchers    <br />
+                    </button>
+                    <button style={{ fontSize: "18px", color: "#573b87", textAlign: "center", cursor: "pointer", marginLeft: '10px', height: '100px', width: '150px' }}>Request Vouchers
+                        <br />
+                    </button>
+                </div>
+
+                <div className="graphImages">
+                    <img src={categoryImg} alt="" className="gImage" />
+                    <img src={analysisImg} alt="" className="gImage" style={{ marginTop: "30px" }} />
+                </div>
+
             </div>
 
-            <button className="btn2">Share QR <BsShareFill style={{ marginLeft: "6px" }} /></button>
-          </div>
+            <div className="bulletin">
+                <div className="heading1" >
+                    <h5
+                        style={{ color: "#3f4040", fontSize: "12px", textAlign: "left" }}
+                    >
+                        Hello, Merchant Ram Prasad
+                    </h5>
+                    <h2
+                        style={{ color: "#3f4040", textAlign: "left", marginTop: "10px" }}
+                    >
+                        +91 7060504030
+                    </h2>
+                    <div className={`scanqr ${showScanModal}`}>
+                        <button onClick={openScanModal} style={{ marginBottom: "12px" }}>scan</button>
+                        {showScanModal && <ScanModal closeModal={closeScanModal} />}
+                    </div>
+
+
+
+                </div>
+                <img src={bulletinImg} alt="" />
+            </div>
+
         </div>
-      </div>
-      <RightProfile />
-    </div>
-  )
-}
+    );
+};
 
 export default Merchant;

@@ -32,17 +32,15 @@ const Roles = () => {
         navigate("/dashboard"); // Navigate to "/dashboard" route for "User" role
         break;
       case "page2":
-        navigate("/governmentDashboard"); // Navigate to "/governmentDashboard" route for "Government" role
+        navigate("/merchant-dashboard"); // Navigate to "/governmentDashboard" route for "Government" role
         break;
       case "page3":
-        navigate("/Merchant"); // Navigate to "/Merchant" route for "Merchant" role
+        navigate("/government-Dashboard"); // Navigate to "/Merchant" route for "Merchant" role
         break;
-      case "page4":
-        navigate("/company-dashboard"); // Navigate to "/company-dashboard" route for "Employee" role
-        break;
-      case "page5":
-        navigate("/CompanyDashboard"); // Navigate to "/CompanyDashboard" route for "Corporate" role
-        break;
+      case 'page4':
+        navigate("/company-Dashboard")// Navigate to "/Comapany-Dashboard" route for "Company" role
+      
+
       default:
         break;
     }
@@ -70,10 +68,9 @@ const Roles = () => {
               <select className="roleDropdown" onChange={handleRoleSelection}>
                 <option value="">Select your Role</option>
                 <option value="page1">User</option>
-                <option value="page2">Government</option>
-                <option value="page3">Merchant</option>
-                <option value="page4">Employee</option>
-                <option value="page5">Corporate</option>
+                <option value="page2">Merchant</option>
+                <option value="page3">Government</option>
+                <option value="page4">Corporate</option>
               </select>
             </div>
           </div>

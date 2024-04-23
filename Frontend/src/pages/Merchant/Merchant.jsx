@@ -8,15 +8,12 @@ import LeftProfile from '../../components/LeftProfile/LeftProfile';
 import RightProfile from '../../components/RightProfile/RightProfile';
 
 const Merchant = () => {
-    // State for showing/hiding the amount modal
     const [showAmountModal, setShowAmountModal] = useState(false);
 
-    // Open the amount modal
     const openAmountModal = () => {
         setShowAmountModal(true);
     };
 
-    // Close the amount modal
     const closeAmountModal = () => {
         setShowAmountModal(false);
     };
@@ -43,12 +40,13 @@ const Merchant = () => {
                     </div>
                     <div className="minfo2">
                         <img src={QRImage} alt="" />
-                        <p style={{ fontSize: "11px", textAlign: "center", padding: "3px", lineHeight: "13px" }}>Payments made to this QR through Paytm, DigiPay, GPay,<br /> PhonePe, or any other UPI app will be received <br /> in your <span>linked bank account</span></p>
+                        <p style={{ fontSize: "11px", textAlign: "center", padding: "3px", lineHeight: "13px" }}>Payments made to this QR through Paytm, DigiPay, GPay,<br /> PhonePe, or any other UPI app will be recieved <br /> in your <span>linked bank account</span></p>
 
                         <div className={`modal-NewAmountContainer ${showAmountModal}`}>
                             <button onClick={openAmountModal}>Scan QR <MdOutlineQrCodeScanner style={{ marginLeft: "6px" }} /></button>
                             {showAmountModal && <AmountModal closeModal={closeAmountModal} />}
                         </div>
+
 
                         <button className="btn2">Share QR <BsShareFill style={{ marginLeft: "6px" }} /></button>
                     </div>
